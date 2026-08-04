@@ -501,7 +501,7 @@
         }
 
         /* ============================================================
-           DATA TABLE - Clickable rows
+           DATA TABLE - Clickable Rows
            ============================================================ */
         .data-table {
             width: 100%;
@@ -528,7 +528,6 @@
             font-size: 10px;
         }
         
-        /* Clickable row styling */
         .data-table tr {
             cursor: pointer;
             transition: var(--transition);
@@ -549,7 +548,6 @@
         }
         .data-table tr:last-child td { border-bottom: none; }
         
-        /* Row click hint */
         .row-click-hint {
             font-size: 7px;
             color: var(--text-muted);
@@ -803,7 +801,6 @@
             font-size: 11px !important;
         }
 
-        /* Active row highlight animation */
         @keyframes rowHighlight {
             0% { background: var(--primary-light); }
             50% { background: #D6D6FF; }
@@ -1483,7 +1480,6 @@
                 return;
             }
 
-            // Count TMS records (1-6)
             const tmsCount = activity.tms.length;
             let html = '';
             for (let i = 0; i < 6; i++) {
@@ -1528,14 +1524,11 @@
                         currentLoadTypeBadge.style.display = 'none';
                     }
 
-                    // Update TMS progress dots
                     updateTMSProgress(activity.id);
                     
-                    // Update TMS counter
                     const tmsCount = activity.tms.length;
                     currentTMS.textContent = tmsCount >= 6 ? 'TMS 6 ✓' : 'TMS ' + (tmsCount + 1);
                     
-                    // Highlight the activity in the table
                     highlightActiveRow(activity.id);
                 }
             } else {
@@ -1543,7 +1536,6 @@
                 currentCategoryBadge.style.display = 'none';
                 tmsProgress.innerHTML = '';
                 currentTMS.textContent = 'TMS 1';
-                // Remove row highlights
                 document.querySelectorAll('.data-table tr').forEach(row => {
                     row.classList.remove('active-row', 'row-highlight');
                 });
@@ -1552,7 +1544,7 @@
         }
 
         // ============================================================
-        // CLICKABLE ROWS - NEW FEATURE
+        // CLICKABLE ROWS - WITH TIMER PROTECTION
         // ============================================================
         function selectActivityFromRow(activityId) {
             const activity = activities.find(a => a.id === activityId);
@@ -1567,27 +1559,38 @@
                 return;
             }
             
-            // Reset timer if running
+            // Check if timer is running or paused
             if (isRunning || isPaused) {
-                resetTimer();
+                const currentActivity = activities.find(a => a.id === currentActivityId);
+                // Show confirmation dialog
+                if (confirm(`⏱️ Timer is ${isRunning ? 'running' : 'paused'} for "${currentActivity?.name || 'current activity'}".\n\nSwitching will stop the timer and discard the current recording.\n\nAre you sure you want to switch to "${activity.name}"?`)) {
+                    // User confirms - stop timer and switch
+                    resetTimer();
+                    unitsSection.classList.add('hidden');
+                    selectActivity(activityId);
+                    highlightActiveRow(activityId);
+                    showToast(`Switched to "${activity.name}"`, 'success');
+                } else {
+                    // User cancels - stay on current activity
+                    showToast('Switch cancelled', 'info');
+                    // Re-highlight the current activity
+                    if (currentActivityId) {
+                        highlightActiveRow(currentActivityId);
+                    }
+                }
+            } else {
+                // Timer is not running - switch freely
+                selectActivity(activityId);
+                highlightActiveRow(activityId);
+                showToast(`Switched to "${activity.name}"`, 'success');
             }
-            
-            // Select the activity
-            selectActivity(activityId);
-            
-            // Highlight the row
-            highlightActiveRow(activityId);
-            
-            showToast(`Switched to "${activity.name}"`, 'success');
         }
 
         function highlightActiveRow(activityId) {
-            // Remove all active classes
             document.querySelectorAll('.data-table tr').forEach(row => {
                 row.classList.remove('active-row', 'row-highlight');
             });
             
-            // Find and highlight the matching row
             const rows = document.querySelectorAll('.data-table tr');
             rows.forEach(row => {
                 const onclickAttr = row.getAttribute('onclick');
@@ -1601,7 +1604,7 @@
         // ACTIVITY MANAGEMENT
         // ============================================================
         function openEditModal(activityId) {
-            event.stopPropagation(); // Prevent row click from firing
+            event.stopPropagation();
             const activity = activities.find(a => a.id === activityId);
             if (!activity) return;
             editingActivityId = activityId;
@@ -1664,7 +1667,6 @@
             updateTimerStatus('ready');
             updateAddButtonState();
             if (activities.length > 0) {
-                // Find the first activity with incomplete TMS, or just the first one
                 const incomplete = activities.find(a => a.tms.length < 6);
                 selectActivity(incomplete ? incomplete.id : activities[0].id);
             }
@@ -1697,14 +1699,13 @@
         }
 
         function deleteActivity(id) {
-            event.stopPropagation(); // Prevent row click
+            event.stopPropagation();
             if (!confirm('Delete this activity?')) return;
             const name = activities.find(a => a.id === id)?.name || 'activity';
             activities = activities.filter(a => a.id !== id);
             if (currentActivityId === id) { 
                 currentActivityId = null; 
                 resetTimer();
-                // Select another activity if available
                 if (activities.length > 0) {
                     selectActivity(activities[0].id);
                 } else {
@@ -1892,7 +1893,6 @@
             renderTable();
             updateSummary();
 
-            // Update UI
             const tmsCount = activity.tms.length;
             currentTMS.textContent = tmsCount >= 6 ? 'TMS 6 ✓' : 'TMS ' + (tmsCount + 1);
             updateTMSProgress(activity.id);
@@ -1932,7 +1932,6 @@
                 const catClass = getCategoryBadgeClass(cat);
                 const ltClass = getActivityBadgeClass(lt);
                 
-                // Check if this is the active row
                 const isActive = currentActivityId === activity.id;
                 const activeClass = isActive ? 'active-row' : '';
                 
@@ -1953,7 +1952,6 @@
                         html +=
                             `<td style="padding:4px 2px;background:var(--success-light);border-radius:4px;"><div style="font-weight:700;color:var(--primary);font-size:8px;">${e.time}m</div><div style="color:var(--text-secondary);font-size:7px;">${e.units}u</div><div style="color:var(--primary);font-style:italic;font-size:7px;max-width:50px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin:0 auto" title="${e.remarks||''}">${e.remarks||'N/A'}</div><div style="color:var(--success);font-weight:700;font-size:7px;">${upm}u/m</div></td>`;
                     } else {
-                        // Show empty state
                         const isNext = i === tc && tc < 6;
                         html += `<td style="padding:4px 2px;color:var(--text-muted);font-size:8px;${isNext ? 'border:2px dashed var(--primary);border-radius:4px;' : ''}">${isNext ? '← Next' : '—'}</td>`;
                     }
@@ -1968,7 +1966,6 @@
             tableContainer.innerHTML = html;
             recordCount.textContent = totalRecords + ' records';
             
-            // Re-highlight active row after re-render
             if (currentActivityId) {
                 highlightActiveRow(currentActivityId);
             }
@@ -2242,10 +2239,11 @@
         // BOOT
         // ============================================================
         init();
-        console.log('⚡ Time Motion Study · Click-to-Select Feature');
+        console.log('⚡ Time Motion Study · Click-to-Select with Timer Protection');
         console.log('📂 Categories: Inbound, Outbound, Inventory, Replenishment');
         console.log('📦 Activity Types: Palletized, Loose, VAS, Others');
         console.log('👆 Click any activity row in the table to select it');
+        console.log('⏱️ Timer protection: Confirmation required when timer is running');
         console.log('💬 Remarks field - Ctrl+Enter to save');
     </script>
 </body>
