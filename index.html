@@ -1082,16 +1082,22 @@
         </div>
     </div>
 
-    <!-- Edit Modal -->
+    <!-- ============================================================
+    EDIT MODAL - UPDATED with Category & Activity Type dropdowns
+    ============================================================ -->
     <div id="editModal" class="modal-custom-overlay hidden" onclick="if(event.target===this)closeEditModal()">
         <div class="modal-custom-card animate-scale-in">
             <h5 class="fw-bold font-heading mb-3" style="color:var(--text-primary);font-size:1rem;">✏️ Edit Activity</h5>
+            
+            <!-- Activity Name -->
             <div class="mb-3">
                 <span class="section-label">Activity Name</span>
                 <input type="text" id="editActivityName" maxlength="50" class="input-field" style="font-size:16px;min-height:40px;">
             </div>
+            
+            <!-- Category Type - Dropdown Chip -->
             <div class="mb-3">
-                <span class="section-label">Category Type</span>
+                <span class="section-label">📂 Category Type</span>
                 <div class="dropdown-chip" id="editCategoryDropdown">
                     <button class="chip-selector cat-inbound" onclick="toggleEditCategoryDropdown()" id="editCategorySelector">
                         <span class="chip-icon" id="editCategoryIcon">📥</span>
@@ -1127,8 +1133,10 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- Activity Type - Dropdown Chip -->
             <div class="mb-3">
-                <span class="section-label">Activity Type</span>
+                <span class="section-label">📦 Activity Type</span>
                 <div class="dropdown-chip" id="editActivityDropdown">
                     <button class="chip-selector type-palletized" onclick="toggleEditActivityDropdown()" id="editActivitySelector">
                         <span class="chip-icon" id="editActivityIcon">📦</span>
@@ -1164,6 +1172,8 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- Buttons -->
             <div class="d-flex gap-2">
                 <button onclick="closeEditModal()" class="btn btn-outline-custom btn-custom flex-grow-1 small" style="min-height:40px;font-size:0.7rem;">Cancel</button>
                 <button onclick="saveEdit()" class="btn btn-primary-custom btn-custom flex-grow-1 small" style="min-height:40px;font-size:0.7rem;">💾 Save</button>
