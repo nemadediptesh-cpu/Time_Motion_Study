@@ -1,0 +1,56 @@
+# ⚡ Time Motion Study - Warehouse Activity Tracker
+
+A professional web application for tracking warehouse activities, time motion studies, and productivity metrics.
+
+## 🔐 Default Login Credentials
+
+- **Username:** `admin`
+- **Password:** `admin123`
+
+## 📦 Features
+
+- 🔐 Secure login system with session management
+- 📊 Load type tracking (Palletized / Loose)
+- ⏱️ Real-time timer with up to 6 TMS recordings per activity
+- 📝 Activity remarks and notes for each recording
+- 📈 Automatic productivity calculations (avg & hourly rate)
+- 📊 Excel export with formatted tables
+- 💾 Save/Load data to browser storage
+- 🔗 Share data via encoded URL links
+- ✏️ Edit activity names and load types
+- 📱 Fully responsive mobile-first design
+- 🎨 Modern design system with animations
+
+## 🚀 Deployment on GitHub Pages
+
+### Step 1: Create Repository
+1. Create a new repository on GitHub
+2. Clone it locally or upload files directly
+
+### Step 2: Upload Files
+Upload these files to your repository:
+- `index.html` (main application)
+- `login.html` (login page)
+- `README.md` (this file)
+
+### Step 3: Enable GitHub Pages
+1. Go to **Settings** → **Pages**
+2. Under "Source", select `main` branch
+3. Click **Save**
+4. Your app will be live at: `https://[username].github.io/[repo-name]/login.html`
+
+### Step 4: Access the App
+- Open the URL in your browser
+- Login with default credentials
+- Start tracking activities!
+
+## 🛠️ Customization
+
+### Change Login Credentials
+Edit the `VALID_CREDENTIALS` object in `login.html`:
+
+```javascript
+const VALID_CREDENTIALS = {
+    username: 'your-username',
+    password: 'your-password'
+};
