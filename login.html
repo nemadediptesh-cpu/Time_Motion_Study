@@ -5,9 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#1018D8">
     <title>Login - Time Motion Study</title>
+    
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
     <style>
         :root {
             --primary: #1018D8;
@@ -99,11 +106,7 @@
             font-weight: 500;
         }
 
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-label {
+        .form-label-custom {
             display: block;
             font-size: 12px;
             font-weight: 700;
@@ -125,6 +128,7 @@
             font-size: 18px;
             color: var(--text-muted);
             pointer-events: none;
+            z-index: 2;
         }
 
         .form-input {
@@ -150,53 +154,6 @@
             color: var(--text-muted);
         }
 
-        .remember-me {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 24px;
-            cursor: pointer;
-        }
-
-        .remember-me input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            accent-color: var(--primary);
-            cursor: pointer;
-        }
-
-        .remember-me label {
-            font-size: 13px;
-            color: var(--text-secondary);
-            cursor: pointer;
-            user-select: none;
-        }
-
-        .login-btn {
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: 'Inter', sans-serif;
-            letter-spacing: 0.02em;
-            box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
-        }
-
-        .login-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
-        }
-
-        .login-btn:active {
-            transform: scale(0.98);
-        }
-
         .error-message {
             background: #FEE2E2;
             color: var(--danger);
@@ -219,13 +176,6 @@
             display: block;
         }
 
-        .footer-text {
-            text-align: center;
-            margin-top: 16px;
-            font-size: 12px;
-            color: var(--text-muted);
-        }
-
         .password-toggle {
             position: absolute;
             right: 16px;
@@ -237,6 +187,33 @@
             font-size: 18px;
             color: var(--text-muted);
             padding: 4px;
+            z-index: 2;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.02em;
+            box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
+            color: white;
+        }
+
+        .btn-login:active {
+            transform: scale(0.98);
         }
 
         @media (max-width: 480px) {
@@ -260,34 +237,34 @@
             </div>
 
             <form id="loginForm" onsubmit="handleLogin(event)">
-                <div class="form-group">
-                    <label class="form-label">Username</label>
+                <div class="mb-3">
+                    <label class="form-label-custom">Username</label>
                     <div class="input-wrapper">
-                        <span class="input-icon">👤</span>
+                        <span class="input-icon"><i class="bi bi-person"></i></span>
                         <input type="text" class="form-input" id="username" placeholder="Enter username" required autocomplete="username">
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label class="form-label">Password</label>
+                <div class="mb-3">
+                    <label class="form-label-custom">Password</label>
                     <div class="input-wrapper">
-                        <span class="input-icon">🔒</span>
+                        <span class="input-icon"><i class="bi bi-lock"></i></span>
                         <input type="password" class="form-input" id="password" placeholder="Enter password" required autocomplete="current-password">
-                        <button type="button" class="password-toggle" onclick="togglePassword()" id="toggleBtn">👁️</button>
+                        <button type="button" class="password-toggle" onclick="togglePassword()" id="toggleBtn">
+                            <i class="bi bi-eye"></i>
+                        </button>
                     </div>
                 </div>
 
-                <div class="remember-me" onclick="document.getElementById('rememberMe').click()">
-                    <input type="checkbox" id="rememberMe">
-                    <label for="rememberMe">Remember me</label>
+                <div class="mb-3 d-flex align-items-center gap-2" onclick="document.getElementById('rememberMe').click()" style="cursor:pointer;">
+                    <input type="checkbox" id="rememberMe" class="form-check-input mt-0" style="accent-color:var(--primary);width:18px;height:18px;">
+                    <label for="rememberMe" class="text-secondary" style="font-size:13px;cursor:pointer;user-select:none;">Remember me</label>
                 </div>
 
-                <button type="submit" class="login-btn">Sign In</button>
+                <button type="submit" class="btn-login">Sign In</button>
             </form>
 
-            <p class="footer-text">Making TMS Easy</p>
-        </div>
-    </div>
+            <p class="text-center mt-3 text-muted" style="font-size:12px;">Default: TMS Made Easy
 
     <script>
         // Default credentials
@@ -339,10 +316,10 @@
             
             if (passwordInput.type === 'password') {
                 passwordInput.type = 'text';
-                toggleBtn.textContent = '🙈';
+                toggleBtn.innerHTML = '<i class="bi bi-eye-slash"></i>';
             } else {
                 passwordInput.type = 'password';
-                toggleBtn.textContent = '👁️';
+                toggleBtn.innerHTML = '<i class="bi bi-eye"></i>';
             }
         }
 
