@@ -64,34 +64,46 @@
             min-height: 100vh;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
         }
 
         .app-bg {
             background: linear-gradient(180deg, var(--primary-light) 0%, var(--bg) 100%);
             min-height: 100vh;
-            padding: 1rem 0 5rem 0;
+            padding: 0.75rem 0 6rem 0;
+        }
+
+        /* Mobile-safe container */
+        .mobile-container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 0 12px;
         }
 
         .glass-card {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.92);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--border-light);
             box-shadow: var(--shadow-sm);
             border-radius: var(--radius-lg);
-            padding: 1.25rem;
+            padding: 1rem;
             transition: box-shadow 0.2s ease;
         }
         .glass-card:hover {
             box-shadow: var(--shadow-md);
         }
 
+        /* ============================================================
+           BUTTONS - Mobile optimized (min 44px touch target)
+           ============================================================ */
         .btn-custom {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 6px;
-            padding: 12px 20px;
+            padding: 12px 16px;
+            min-height: 44px;
             border: none;
             border-radius: var(--radius-md);
             font-family: var(--font-body);
@@ -102,8 +114,11 @@
             position: relative;
             overflow: hidden;
             letter-spacing: -0.01em;
+            touch-action: manipulation;
+            -webkit-touch-callout: none;
+            user-select: none;
         }
-        .btn-custom:active { transform: scale(0.97); }
+        .btn-custom:active { transform: scale(0.96); }
         .btn-custom:disabled {
             opacity: 0.5;
             cursor: not-allowed;
@@ -187,20 +202,28 @@
             color: var(--danger);
         }
 
+        /* ============================================================
+           TOGGLE BUTTONS - Mobile optimized
+           ============================================================ */
         .toggle-btn {
             flex: 1;
-            padding: 12px 8px;
+            padding: 10px 6px;
+            min-height: 44px;
             border: 2px solid var(--border);
             border-radius: var(--radius-md);
             background: var(--card);
             color: var(--text-secondary);
             font-weight: 600;
-            font-size: 13px;
+            font-size: 12px;
             cursor: pointer;
             transition: var(--transition);
             font-family: var(--font-body);
             text-align: center;
             min-width: 0;
+            touch-action: manipulation;
+            -webkit-touch-callout: none;
+            user-select: none;
+            word-break: break-word;
         }
         .toggle-btn:hover {
             border-color: var(--primary);
@@ -228,17 +251,56 @@
             box-shadow: 0 4px 12px rgba(107,114,128,0.3);
         }
 
+        /* ============================================================
+           CATEGORY BUTTONS - Mobile optimized
+           ============================================================ */
+        .category-btn {
+            padding: 8px 10px;
+            min-height: 40px;
+            border: 2px solid var(--border);
+            border-radius: var(--radius-md);
+            background: var(--card);
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 11px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-body);
+            text-align: center;
+            flex: 1;
+            touch-action: manipulation;
+            -webkit-touch-callout: none;
+            user-select: none;
+            word-break: break-word;
+        }
+        .category-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+        .category-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: var(--text-white);
+            box-shadow: 0 4px 12px rgba(16,24,216,0.3);
+        }
+
+        /* ============================================================
+           INPUTS - Mobile optimized (min 44px height)
+           ============================================================ */
         .input-field {
             width: 100%;
-            padding: 12px 16px;
+            padding: 12px 14px;
+            min-height: 44px;
             border: 2px solid var(--border);
             border-radius: var(--radius-md);
             font-family: var(--font-body);
-            font-size: 14px;
+            font-size: 16px; /* Prevents iOS zoom */
             font-weight: 500;
             color: var(--text-primary);
             background: var(--bg);
             transition: var(--transition);
+            -webkit-appearance: none;
+            appearance: none;
         }
         .input-field:focus {
             outline: none;
@@ -263,17 +325,19 @@
 
         .textarea-field {
             width: 100%;
-            padding: 12px 16px;
+            padding: 12px 14px;
+            min-height: 80px;
             border: 2px solid var(--border);
             border-radius: var(--radius-md);
             font-family: var(--font-body);
-            font-size: 14px;
+            font-size: 16px; /* Prevents iOS zoom */
             font-weight: 500;
             color: var(--text-primary);
             background: var(--bg);
             transition: var(--transition);
             resize: vertical;
-            min-height: 80px;
+            -webkit-appearance: none;
+            appearance: none;
         }
         .textarea-field:focus {
             outline: none;
@@ -282,24 +346,38 @@
         }
         .textarea-field::placeholder { color: var(--text-muted); }
 
+        /* ============================================================
+           TIMER - Mobile optimized
+           ============================================================ */
         .timer-display {
             font-family: var(--font-mono);
             font-weight: 700;
             letter-spacing: 2px;
+            font-size: 3.5rem !important;
+            line-height: 1.2;
+        }
+        @media (max-width: 400px) {
+            .timer-display {
+                font-size: 2.8rem !important;
+            }
         }
         .timer-glow {
             text-shadow: 0 0 40px rgba(16,24,216,0.3), 0 0 80px rgba(16,24,216,0.15);
         }
 
+        /* ============================================================
+           BADGES
+           ============================================================ */
         .badge-custom {
             display: inline-flex;
             align-items: center;
-            padding: 4px 12px;
+            padding: 4px 10px;
             border-radius: 20px;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 700;
             letter-spacing: 0.03em;
             text-transform: uppercase;
+            white-space: nowrap;
         }
         .badge-primary-custom {
             background: var(--primary-light);
@@ -324,15 +402,18 @@
 
         .section-label {
             font-family: var(--font-heading);
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.08em;
             color: var(--text-secondary);
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
         }
 
+        /* ============================================================
+           STATUS DOT
+           ============================================================ */
         @keyframes statusPulse {
             0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.4); }
             50% { box-shadow: 0 0 0 8px rgba(34,197,94,0); }
@@ -341,53 +422,71 @@
             animation: statusPulse 2s infinite;
         }
 
+        /* ============================================================
+           DATA TABLE - Mobile optimized with horizontal scroll
+           ============================================================ */
         .data-table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 12px;
+            font-size: 10px;
             background: var(--card);
+            min-width: 600px;
         }
         .data-table th {
             background: var(--primary);
             color: var(--text-white);
-            padding: 10px 8px;
+            padding: 8px 4px;
             text-align: center;
             font-weight: 700;
-            font-size: 10px;
+            font-size: 9px;
             letter-spacing: 0.03em;
             text-transform: uppercase;
             white-space: nowrap;
         }
         .data-table td {
-            padding: 8px 6px;
+            padding: 6px 4px;
             text-align: center;
             border-bottom: 1px solid var(--border-light);
-            font-size: 11px;
+            font-size: 10px;
         }
         .data-table tr:hover td {
             background: var(--primary-light);
         }
         .data-table tr:last-child td { border-bottom: none; }
 
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 0 -4px;
+            padding: 0 4px;
+            border-radius: var(--radius-md);
+        }
+
+        /* ============================================================
+           EMPTY STATE
+           ============================================================ */
         .empty-state {
             text-align: center;
-            padding: 32px 16px;
+            padding: 24px 12px;
             color: var(--text-muted);
         }
         .empty-state-icon {
-            font-size: 48px;
-            margin-bottom: 12px;
+            font-size: 40px;
+            margin-bottom: 8px;
             opacity: 0.5;
         }
 
+        /* ============================================================
+           TOAST - Mobile optimized
+           ============================================================ */
         .toast-custom {
             position: fixed;
-            bottom: 24px;
+            bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
             background: var(--text-primary);
             color: var(--text-white);
-            padding: 12px 24px;
+            padding: 12px 20px;
             border-radius: 24px;
             font-size: 13px;
             font-weight: 600;
@@ -396,12 +495,18 @@
             opacity: 0;
             transition: opacity 0.3s ease;
             pointer-events: none;
-            white-space: nowrap;
+            max-width: 90%;
+            white-space: normal;
+            text-align: center;
+            word-break: break-word;
         }
         .toast-custom.show { opacity: 1; }
         .toast-custom.success { background: var(--success); }
         .toast-custom.error { background: var(--danger); }
 
+        /* ============================================================
+           MODAL - Mobile optimized
+           ============================================================ */
         .modal-custom-overlay {
             position: fixed;
             inset: 0;
@@ -410,37 +515,36 @@
             -webkit-backdrop-filter: blur(4px);
             z-index: 100;
             display: flex;
-            align-items: center;
+            align-items: flex-end;
             justify-content: center;
             padding: 16px;
         }
+        @media (min-width: 500px) {
+            .modal-custom-overlay {
+                align-items: center;
+            }
+        }
         .modal-custom-card {
             background: var(--card);
-            border-radius: var(--radius-lg);
-            padding: 1.5rem;
+            border-radius: var(--radius-lg) var(--radius-lg) var(--radius-lg) var(--radius-lg);
+            padding: 1.25rem;
             width: 100%;
             max-width: 400px;
             box-shadow: var(--shadow-lg);
-            max-height: 80vh;
+            max-height: 85vh;
             overflow-y: auto;
+            animation: slideUp 0.3s cubic-bezier(0.16,1,0.3,1);
+        }
+        @media (min-width: 500px) {
+            .modal-custom-card {
+                border-radius: var(--radius-lg);
+                animation: scaleIn 0.3s cubic-bezier(0.16,1,0.3,1);
+            }
         }
 
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 4px;
-            height: 4px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: var(--bg-secondary);
-            border-radius: 4px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: var(--border);
-            border-radius: 4px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: var(--text-muted);
-        }
-
+        /* ============================================================
+           ANIMATIONS
+           ============================================================ */
         @keyframes slideDown {
             0% { transform: translateY(-20px); opacity: 0; }
             100% { transform: translateY(0); opacity: 1; }
@@ -466,57 +570,130 @@
         .font-heading { font-family: var(--font-heading); }
         .font-mono { font-family: var(--font-mono); }
 
-        .category-btn {
-            padding: 8px 12px;
-            border: 2px solid var(--border);
-            border-radius: var(--radius-md);
-            background: var(--card);
-            color: var(--text-secondary);
-            font-weight: 600;
-            font-size: 12px;
-            cursor: pointer;
-            transition: var(--transition);
-            font-family: var(--font-body);
-            text-align: center;
-            flex: 1;
+        /* ============================================================
+           SCROLLBAR
+           ============================================================ */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 3px;
+            height: 3px;
         }
-        .category-btn:hover {
-            border-color: var(--primary);
-            color: var(--primary);
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+            border-radius: 4px;
         }
-        .category-btn.active {
-            background: var(--primary);
-            border-color: var(--primary);
-            color: var(--text-white);
-            box-shadow: 0 4px 12px rgba(16,24,216,0.3);
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: var(--text-muted);
+        }
+
+        /* ============================================================
+           MOBILE-SPECIFIC FIXES
+           ============================================================ */
+        /* Better touch targets for small screens */
+        @media (max-width: 400px) {
+            .toggle-btn { font-size: 10px; padding: 8px 4px; }
+            .category-btn { font-size: 10px; padding: 6px 6px; min-height: 36px; }
+            .btn-custom { font-size: 12px; padding: 10px 12px; min-height: 40px; }
+            .glass-card { padding: 0.75rem; }
+            .section-label { font-size: 9px; }
+        }
+
+        /* Prevent zoom on input focus */
+        @media (max-width: 768px) {
+            input, textarea, select {
+                font-size: 16px !important;
+            }
+        }
+
+        /* Better spacing for action buttons on mobile */
+        .action-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+        }
+        .action-grid .full-width {
+            grid-column: 1 / -1;
+        }
+
+        /* Header mobile optimization */
+        .header-icon {
+            width: 48px;
+            height: 48px;
+            font-size: 1.5rem;
+        }
+        @media (max-width: 400px) {
+            .header-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            .display-6 {
+                font-size: 1.4rem !important;
+            }
+        }
+
+        /* Timer card mobile padding */
+        .timer-card {
+            padding: 1.25rem !important;
+        }
+        @media (max-width: 400px) {
+            .timer-card {
+                padding: 1rem !important;
+            }
+            .timer-card .fs-5 {
+                font-size: 1rem !important;
+            }
+        }
+
+        /* Summary cards mobile */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+        }
+        .summary-grid .full-width {
+            grid-column: 1 / -1;
+        }
+
+        /* Save/Load list items */
+        .saved-item {
+            padding: 12px !important;
+            margin-bottom: 6px !important;
+        }
+        .saved-item .delete-btn {
+            padding: 4px 10px !important;
+            font-size: 11px !important;
         }
     </style>
 </head>
 <body>
 
     <div class="app-bg">
-        <div class="container" style="max-width:640px;">
+        <div class="mobile-container">
 
             <!-- Header -->
-            <div class="text-center mb-4 pt-2 animate-slide-down">
-                <div class="d-inline-flex align-items-center justify-content-center" 
-                     style="width:56px;height:56px;background:#fff;border-radius:16px;box-shadow:var(--shadow-sm);margin-bottom:8px;border:1px solid var(--border-light);">
-                    <span class="fs-1">⚡</span>
+            <div class="text-center mb-3 pt-1 animate-slide-down">
+                <div class="d-inline-flex align-items-center justify-content-center header-icon" 
+                     style="background:#fff;border-radius:14px;box-shadow:var(--shadow-sm);margin-bottom:6px;border:1px solid var(--border-light);">
+                    <span>⚡</span>
                 </div>
-                <h1 class="display-6 fw-bold text-dark font-heading" id="mainTitle" contenteditable="true" style="letter-spacing:-0.02em;">
+                <h1 class="display-6 fw-bold text-dark font-heading" id="mainTitle" contenteditable="true" style="letter-spacing:-0.02em;font-size:1.6rem;">
                     Time Motion Study
                 </h1>
-                <p class="text-secondary small fw-medium mb-0" id="mainSubtitle" contenteditable="true">
+                <p class="text-secondary small fw-medium mb-0" id="mainSubtitle" contenteditable="true" style="font-size:0.75rem;">
                     Warehouse Activity Tracker
                 </p>
             </div>
 
             <!-- Load Type & Activity -->
-            <div class="glass-card mb-3 animate-slide-up">
+            <div class="glass-card mb-2 animate-slide-up">
                 <!-- Category Type -->
-                <div class="mb-3">
+                <div class="mb-2">
                     <span class="section-label">📂 Select Category Type</span>
-                    <div class="d-flex gap-2 flex-wrap">
+                    <div class="d-flex gap-1 flex-wrap">
                         <button class="category-btn active" data-category="inbound" onclick="setCategory('inbound')">
                             📥 Inbound
                         </button>
@@ -533,9 +710,9 @@
                 </div>
 
                 <!-- Activity Type -->
-                <div class="mb-3">
+                <div class="mb-2">
                     <span class="section-label">📦 Select Activity Type</span>
-                    <div class="d-flex gap-2 flex-wrap">
+                    <div class="d-flex gap-1 flex-wrap">
                         <button id="palletizedBtn" onclick="setLoadType('palletized')"
                                 class="toggle-btn active d-flex align-items-center justify-content-center gap-1">
                             <span>📦</span> Palletized
@@ -562,7 +739,7 @@
                         <input type="text" id="activityInput" placeholder="Enter activity name" maxlength="50" disabled
                                class="input-field flex-grow-1">
                         <button id="addActivityBtn" onclick="addActivity()" disabled
-                                class="btn btn-primary-custom btn-custom px-4 flex-shrink-0">
+                                class="btn btn-primary-custom btn-custom px-3 flex-shrink-0">
                             <i class="bi bi-plus-lg"></i> Add
                         </button>
                     </div>
@@ -570,50 +747,52 @@
             </div>
 
             <!-- Timer Card -->
-            <div class="bg-dark rounded-4 p-4 mb-3 text-center shadow-lg animate-slide-up" style="color:#fff;">
-                <div class="small fw-bold text-secondary text-uppercase tracking-widest mb-1" style="letter-spacing:0.1em;">
+            <div class="bg-dark rounded-4 p-3 mb-2 text-center shadow-lg animate-slide-up timer-card" style="color:#fff;">
+                <div class="small fw-bold text-secondary text-uppercase tracking-widest mb-1" style="letter-spacing:0.08em;font-size:0.6rem;">
                     Current Activity
                 </div>
-                <div class="fs-5 fw-bold font-heading mb-1" id="currentActivityName" style="color:#fff;">
+                <div class="fs-5 fw-bold font-heading mb-1" id="currentActivityName" style="color:#fff;font-size:1.1rem;">
                     Select an activity
                 </div>
-                <div class="d-inline-block px-3 py-1 rounded-pill small fw-bold mb-2" id="currentLoadTypeBadge" style="display:none;"></div>
-                <div class="d-inline-block px-3 py-1 rounded-pill small fw-bold mb-2 ms-1" id="currentCategoryBadge" style="display:none;"></div>
+                <div class="d-flex justify-content-center gap-1 flex-wrap mb-1">
+                    <div class="d-inline-block px-2 py-0.5 rounded-pill small fw-bold mb-1" id="currentLoadTypeBadge" style="display:none;font-size:0.6rem;"></div>
+                    <div class="d-inline-block px-2 py-0.5 rounded-pill small fw-bold mb-1 ms-1" id="currentCategoryBadge" style="display:none;font-size:0.6rem;"></div>
+                </div>
 
-                <div class="timer-display display-1 fw-bold mb-3 timer-glow" id="timerDisplay" style="color:#fff;font-size:4rem;">
+                <div class="timer-display fw-bold mb-2 timer-glow" id="timerDisplay" style="color:#fff;">
                     00:00.0
                 </div>
 
-                <div class="d-flex align-items-center justify-content-center gap-3 mb-3 small">
-                    <span class="badge-custom badge-primary-custom" id="currentTMS">TMS 1</span>
-                    <span class="d-flex align-items-center gap-2">
-                        <span class="d-inline-block rounded-circle" id="statusDot" style="width:8px;height:8px;background:var(--text-muted);"></span>
-                        <span class="text-secondary fw-medium" id="statusText">Ready</span>
+                <div class="d-flex align-items-center justify-content-center gap-2 mb-2 small">
+                    <span class="badge-custom badge-primary-custom" id="currentTMS" style="font-size:0.55rem;">TMS 1</span>
+                    <span class="d-flex align-items-center gap-1">
+                        <span class="d-inline-block rounded-circle" id="statusDot" style="width:6px;height:6px;background:var(--text-muted);"></span>
+                        <span class="text-secondary fw-medium" id="statusText" style="font-size:0.6rem;">Ready</span>
                     </span>
                 </div>
 
-                <div class="row g-2">
+                <div class="row g-1">
                     <div class="col-3">
                         <button id="startBtn" onclick="startTimer()"
-                                class="btn btn-success-custom btn-custom w-100 py-2 small">
+                                class="btn btn-success-custom btn-custom w-100 py-1.5 small" style="font-size:0.65rem;min-height:36px;">
                             ▶ Start
                         </button>
                     </div>
                     <div class="col-3">
                         <button id="pauseBtn" onclick="pauseTimer()" disabled
-                                class="btn btn-warning-custom btn-custom w-100 py-2 small">
+                                class="btn btn-warning-custom btn-custom w-100 py-1.5 small" style="font-size:0.65rem;min-height:36px;">
                             ⏸ Pause
                         </button>
                     </div>
                     <div class="col-3">
                         <button id="stopBtn" onclick="stopTimer()" disabled
-                                class="btn btn-danger-custom btn-custom w-100 py-2 small">
+                                class="btn btn-danger-custom btn-custom w-100 py-1.5 small" style="font-size:0.65rem;min-height:36px;">
                             ⏹ Stop
                         </button>
                     </div>
                     <div class="col-3">
                         <button id="resetBtn" onclick="resetTimer()" disabled
-                                class="btn btn-outline-muted btn-custom w-100 py-2 small">
+                                class="btn btn-outline-muted btn-custom w-100 py-1.5 small" style="font-size:0.65rem;min-height:36px;">
                             ⟳ Reset
                         </button>
                     </div>
@@ -621,117 +800,95 @@
             </div>
 
             <!-- Units & Remarks -->
-            <div id="unitsSection" class="glass-card mb-3 hidden border border-success border-2">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <span class="fw-bold font-heading" style="color:var(--text-primary);">📊 Recording Details</span>
-                    <span class="small text-secondary">
+            <div id="unitsSection" class="glass-card mb-2 hidden border border-success border-2">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span class="fw-bold font-heading" style="color:var(--text-primary);font-size:0.85rem;">📊 Recording Details</span>
+                    <span class="small text-secondary" style="font-size:0.65rem;">
                         ⏱ <span id="recordedTimeDisplay" class="fw-bold font-mono" style="color:var(--success);">00:00.0</span>
                     </span>
                 </div>
-                <div class="mb-2">
+                <div class="mb-1.5">
                     <span class="section-label">Units Handled</span>
                     <input type="number" id="unitsInput" placeholder="Enter units handled" min="0" step="1" autofocus
-                           class="input-field input-success">
+                           class="input-field input-success" style="font-size:16px;min-height:40px;">
                 </div>
-                <div class="mb-2">
+                <div class="mb-1.5">
                     <span class="section-label">Remarks</span>
                     <textarea id="remarksInput" placeholder="Add remarks (e.g., resource used, notes, observations...)"
-                              class="textarea-field input-success" rows="2"></textarea>
+                              class="textarea-field input-success" rows="2" style="font-size:16px;min-height:60px;"></textarea>
                 </div>
                 <button id="saveUnitsBtn" onclick="saveRecording()"
-                        class="btn btn-success-custom btn-custom w-100">
+                        class="btn btn-success-custom btn-custom w-100" style="min-height:40px;">
                     💾 Save Recording
                 </button>
             </div>
 
             <!-- Data Table -->
-            <div class="glass-card mb-3 animate-slide-up">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h5 class="fw-bold font-heading mb-0" style="color:var(--text-primary);">📊 Recorded Data</h5>
-                    <span class="badge-custom badge-primary-custom" id="recordCount">0 records</span>
+            <div class="glass-card mb-2 animate-slide-up">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h5 class="fw-bold font-heading mb-0" style="color:var(--text-primary);font-size:0.9rem;">📊 Recorded Data</h5>
+                    <span class="badge-custom badge-primary-custom" id="recordCount" style="font-size:0.55rem;">0 records</span>
                 </div>
-                <div class="overflow-x-auto custom-scrollbar rounded-3 border border-light" id="tableContainer">
+                <div class="table-wrapper custom-scrollbar rounded-3 border border-light" id="tableContainer">
                     <div class="empty-state">
                         <div class="empty-state-icon animate-float">📋</div>
-                        <p class="fw-medium mb-1">No data recorded yet</p>
-                        <p class="small mb-0">Select a category, activity type and add an activity to begin</p>
+                        <p class="fw-medium mb-0" style="font-size:0.8rem;">No data recorded yet</p>
+                        <p class="small mb-0" style="font-size:0.65rem;">Select a category, activity type and add an activity to begin</p>
                     </div>
                 </div>
             </div>
 
             <!-- Summary -->
-            <div id="summarySection" class="glass-card mb-3 hidden animate-slide-up">
-                <h5 class="fw-bold font-heading mb-3" style="color:var(--text-primary);">📈 Performance Summary</h5>
-                <div class="row g-2">
-                    <div class="col-6">
-                        <div class="p-3 rounded-3 text-center" style="background:var(--primary-light);">
-                            <div class="small fw-bold text-uppercase" style="color:var(--primary);letter-spacing:0.04em;">Recordings</div>
-                            <div class="fs-4 fw-black font-heading" style="color:var(--primary);" id="totalActivities">0</div>
-                        </div>
+            <div id="summarySection" class="glass-card mb-2 hidden animate-slide-up">
+                <h5 class="fw-bold font-heading mb-2" style="color:var(--text-primary);font-size:0.9rem;">📈 Performance Summary</h5>
+                <div class="summary-grid">
+                    <div class="p-2 rounded-3 text-center" style="background:var(--primary-light);">
+                        <div class="small fw-bold text-uppercase" style="color:var(--primary);letter-spacing:0.04em;font-size:0.5rem;">Recordings</div>
+                        <div class="fs-5 fw-black font-heading" style="color:var(--primary);" id="totalActivities">0</div>
                     </div>
-                    <div class="col-6">
-                        <div class="p-3 rounded-3 text-center" style="background:var(--success-light);">
-                            <div class="small fw-bold text-uppercase" style="color:var(--success);letter-spacing:0.04em;">Total Time</div>
-                            <div class="fs-4 fw-black font-heading" style="color:var(--success);" id="totalTime">0.0<span class="small">m</span></div>
-                        </div>
+                    <div class="p-2 rounded-3 text-center" style="background:var(--success-light);">
+                        <div class="small fw-bold text-uppercase" style="color:var(--success);letter-spacing:0.04em;font-size:0.5rem;">Total Time</div>
+                        <div class="fs-5 fw-black font-heading" style="color:var(--success);" id="totalTime">0.0<span class="small">m</span></div>
                     </div>
-                    <div class="col-6">
-                        <div class="p-3 rounded-3 text-center" style="background:var(--warning-light);">
-                            <div class="small fw-bold text-uppercase" style="color:var(--warning);letter-spacing:0.04em;">Total Units</div>
-                            <div class="fs-4 fw-black font-heading" style="color:var(--warning);" id="totalUnits">0</div>
-                        </div>
+                    <div class="p-2 rounded-3 text-center" style="background:var(--warning-light);">
+                        <div class="small fw-bold text-uppercase" style="color:var(--warning);letter-spacing:0.04em;font-size:0.5rem;">Total Units</div>
+                        <div class="fs-5 fw-black font-heading" style="color:var(--warning);" id="totalUnits">0</div>
                     </div>
-                    <div class="col-6">
-                        <div class="p-3 rounded-3 text-center" style="background:var(--info-light);">
-                            <div class="small fw-bold text-uppercase" style="color:var(--info);letter-spacing:0.04em;">Avg Rate</div>
-                            <div class="fs-4 fw-black font-heading" style="color:var(--info);" id="avgProductivity">0.0</div>
-                        </div>
+                    <div class="p-2 rounded-3 text-center" style="background:var(--info-light);">
+                        <div class="small fw-bold text-uppercase" style="color:var(--info);letter-spacing:0.04em;font-size:0.5rem;">Avg Rate</div>
+                        <div class="fs-5 fw-black font-heading" style="color:var(--info);" id="avgProductivity">0.0</div>
                     </div>
-                    <div class="col-12">
-                        <div class="p-3 rounded-3 text-center" style="background:var(--primary);">
-                            <div class="small fw-bold text-white-50 text-uppercase" style="letter-spacing:0.04em;">Hourly Rate</div>
-                            <div class="fs-3 fw-black font-heading text-white" id="hourlyRate">0.0 <span class="fs-6">u/hr</span></div>
-                        </div>
+                    <div class="full-width p-2 rounded-3 text-center" style="background:var(--primary);">
+                        <div class="small fw-bold text-white-50 text-uppercase" style="letter-spacing:0.04em;font-size:0.5rem;">Hourly Rate</div>
+                        <div class="fs-4 fw-black font-heading text-white" id="hourlyRate">0.0 <span class="fs-6">u/hr</span></div>
                     </div>
                 </div>
             </div>
 
             <!-- Action Buttons -->
-            <div class="row g-2 mb-3 animate-slide-up">
-                <div class="col-6">
-                    <button onclick="exportToExcel()" class="btn btn-primary-custom btn-custom w-100 small">
-                        📊 Export Excel
-                    </button>
-                </div>
-                <div class="col-6">
-                    <button onclick="saveData()" class="btn btn-outline-custom btn-custom w-100 small">
-                        💾 Save Data
-                    </button>
-                </div>
-                <div class="col-6">
-                    <button onclick="loadData()" class="btn btn-outline-custom btn-custom w-100 small">
-                        📂 Load Data
-                    </button>
-                </div>
-                <div class="col-6">
-                    <button onclick="shareLink()" class="btn btn-outline-custom btn-custom w-100 small">
-                        🔗 Share Link
-                    </button>
-                </div>
-                <div class="col-6">
-                    <button onclick="clearAllData()" class="btn btn-outline-danger btn-custom w-100 small">
-                        🗑 Clear Data
-                    </button>
-                </div>
-                <div class="col-6">
-                    <button onclick="logout()" class="btn btn-danger-custom btn-custom w-100 small">
-                        🚪 Logout
-                    </button>
-                </div>
+            <div class="action-grid mb-2 animate-slide-up">
+                <button onclick="exportToExcel()" class="btn btn-primary-custom btn-custom w-100 small" style="font-size:0.7rem;min-height:40px;">
+                    📊 Export Excel
+                </button>
+                <button onclick="saveData()" class="btn btn-outline-custom btn-custom w-100 small" style="font-size:0.7rem;min-height:40px;">
+                    💾 Save Data
+                </button>
+                <button onclick="loadData()" class="btn btn-outline-custom btn-custom w-100 small" style="font-size:0.7rem;min-height:40px;">
+                    📂 Load Data
+                </button>
+                <button onclick="shareLink()" class="btn btn-outline-custom btn-custom w-100 small" style="font-size:0.7rem;min-height:40px;">
+                    🔗 Share Link
+                </button>
+                <button onclick="clearAllData()" class="btn btn-outline-danger btn-custom w-100 small" style="font-size:0.7rem;min-height:40px;">
+                    🗑 Clear Data
+                </button>
+                <button onclick="logout()" class="btn btn-danger-custom btn-custom w-100 small" style="font-size:0.7rem;min-height:40px;">
+                    🚪 Logout
+                </button>
             </div>
 
             <!-- Status -->
-            <div class="text-center small fw-medium text-muted" id="storageStatus">
+            <div class="text-center small fw-medium text-muted" id="storageStatus" style="font-size:0.6rem;">
                 💾 Ready
             </div>
 
@@ -741,36 +898,36 @@
     <!-- Edit Modal -->
     <div id="editModal" class="modal-custom-overlay hidden" onclick="if(event.target===this)closeEditModal()">
         <div class="modal-custom-card animate-scale-in">
-            <h5 class="fw-bold font-heading mb-3" style="color:var(--text-primary);">✏️ Edit Activity</h5>
+            <h5 class="fw-bold font-heading mb-3" style="color:var(--text-primary);font-size:1rem;">✏️ Edit Activity</h5>
             <div class="mb-3">
                 <span class="section-label">Activity Name</span>
-                <input type="text" id="editActivityName" maxlength="50" class="input-field">
+                <input type="text" id="editActivityName" maxlength="50" class="input-field" style="font-size:16px;min-height:40px;">
             </div>
             <div class="mb-3">
                 <span class="section-label">Category Type</span>
-                <div class="d-flex gap-2 flex-wrap">
-                    <button class="category-btn active" data-edit-category="inbound" onclick="setEditCategory('inbound')">📥 Inbound</button>
-                    <button class="category-btn" data-edit-category="outbound" onclick="setEditCategory('outbound')">📤 Outbound</button>
-                    <button class="category-btn" data-edit-category="inventory" onclick="setEditCategory('inventory')">📊 Inventory</button>
-                    <button class="category-btn" data-edit-category="replenishment" onclick="setEditCategory('replenishment')">🔄 Replenishment</button>
+                <div class="d-flex gap-1 flex-wrap">
+                    <button class="category-btn active" data-edit-category="inbound" onclick="setEditCategory('inbound')" style="font-size:10px;min-height:36px;">📥 Inbound</button>
+                    <button class="category-btn" data-edit-category="outbound" onclick="setEditCategory('outbound')" style="font-size:10px;min-height:36px;">📤 Outbound</button>
+                    <button class="category-btn" data-edit-category="inventory" onclick="setEditCategory('inventory')" style="font-size:10px;min-height:36px;">📊 Inventory</button>
+                    <button class="category-btn" data-edit-category="replenishment" onclick="setEditCategory('replenishment')" style="font-size:10px;min-height:36px;">🔄 Replenishment</button>
                 </div>
             </div>
             <div class="mb-3">
                 <span class="section-label">Activity Type</span>
-                <div class="d-flex gap-2 flex-wrap">
+                <div class="d-flex gap-1 flex-wrap">
                     <button id="editPalletizedBtn" onclick="setEditLoadType('palletized')"
-                            class="toggle-btn active">📦 Palletized</button>
+                            class="toggle-btn active" style="font-size:10px;min-height:36px;">📦 Palletized</button>
                     <button id="editLooseBtn" onclick="setEditLoadType('loose')"
-                            class="toggle-btn loose">📦 Loose</button>
+                            class="toggle-btn loose" style="font-size:10px;min-height:36px;">📦 Loose</button>
                     <button id="editVasBtn" onclick="setEditLoadType('vas')"
-                            class="toggle-btn vas">🔧 VAS</button>
+                            class="toggle-btn vas" style="font-size:10px;min-height:36px;">🔧 VAS</button>
                     <button id="editOthersBtn" onclick="setEditLoadType('others')"
-                            class="toggle-btn others">📌 Others</button>
+                            class="toggle-btn others" style="font-size:10px;min-height:36px;">📌 Others</button>
                 </div>
             </div>
             <div class="d-flex gap-2">
-                <button onclick="closeEditModal()" class="btn btn-outline-custom btn-custom flex-grow-1 small">Cancel</button>
-                <button onclick="saveEdit()" class="btn btn-primary-custom btn-custom flex-grow-1 small">💾 Save</button>
+                <button onclick="closeEditModal()" class="btn btn-outline-custom btn-custom flex-grow-1 small" style="min-height:40px;font-size:0.7rem;">Cancel</button>
+                <button onclick="saveEdit()" class="btn btn-primary-custom btn-custom flex-grow-1 small" style="min-height:40px;font-size:0.7rem;">💾 Save</button>
             </div>
         </div>
     </div>
@@ -778,21 +935,21 @@
     <!-- Save/Load Modal -->
     <div id="saveLoadModal" class="modal-custom-overlay hidden" onclick="if(event.target===this)closeModal()">
         <div class="modal-custom-card animate-scale-in">
-            <h5 class="fw-bold font-heading mb-3" style="color:var(--text-primary);">💾 Saved Data</h5>
+            <h5 class="fw-bold font-heading mb-3" style="color:var(--text-primary);font-size:1rem;">💾 Saved Data</h5>
             <div id="savedDataList" class="mb-3"></div>
-            <button onclick="closeModal()" class="btn btn-outline-custom btn-custom w-100 small">Close</button>
+            <button onclick="closeModal()" class="btn btn-outline-custom btn-custom w-100 small" style="min-height:40px;font-size:0.7rem;">Close</button>
         </div>
     </div>
 
     <!-- Share Modal -->
     <div id="shareModal" class="modal-custom-overlay hidden" onclick="if(event.target===this)closeShareModal()">
         <div class="modal-custom-card animate-scale-in">
-            <h5 class="fw-bold font-heading mb-2" style="color:var(--text-primary);">🔗 Shareable Link</h5>
-            <p class="small text-secondary mb-2">Copy this link to share your data:</p>
+            <h5 class="fw-bold font-heading mb-2" style="color:var(--text-primary);font-size:1rem;">🔗 Shareable Link</h5>
+            <p class="small text-secondary mb-2" style="font-size:0.7rem;">Copy this link to share your data:</p>
             <div class="bg-light rounded-3 p-2 small font-mono text-secondary break-all border" 
-                 style="word-break:break-all;max-height:64px;overflow-y:auto;" id="shareUrlBox"></div>
-            <button onclick="copyShareLink()" class="btn btn-primary-custom btn-custom w-100 mt-3 small">📋 Copy Link</button>
-            <button onclick="closeShareModal()" class="btn btn-outline-custom btn-custom w-100 mt-2 small">Close</button>
+                 style="word-break:break-all;max-height:56px;overflow-y:auto;font-size:0.65rem;" id="shareUrlBox"></div>
+            <button onclick="copyShareLink()" class="btn btn-primary-custom btn-custom w-100 mt-3 small" style="min-height:40px;font-size:0.7rem;">📋 Copy Link</button>
+            <button onclick="closeShareModal()" class="btn btn-outline-custom btn-custom w-100 mt-2 small" style="min-height:40px;font-size:0.7rem;">Close</button>
         </div>
     </div>
 
@@ -954,7 +1111,8 @@
                     if (activity.category) {
                         currentCategoryBadge.style.display = 'inline-block';
                         currentCategoryBadge.textContent = getCategoryEmoji(activity.category) + ' ' + activity.category.toUpperCase();
-                        currentCategoryBadge.className = 'd-inline-block px-3 py-1 rounded-pill small fw-bold mb-2 ms-1 badge-custom ' + getCategoryBadgeClass(activity.category);
+                        currentCategoryBadge.className = 'd-inline-block px-2 py-0.5 rounded-pill small fw-bold mb-1 ms-1 badge-custom ' + getCategoryBadgeClass(activity.category);
+                        currentCategoryBadge.style.fontSize = '0.55rem';
                     } else {
                         currentCategoryBadge.style.display = 'none';
                     }
@@ -966,7 +1124,8 @@
                         const ltClass = activity.loadType === 'palletized' ? 'badge-primary-custom' :
                                        activity.loadType === 'loose' ? 'badge-warning-custom' :
                                        activity.loadType === 'vas' ? 'badge-purple-custom' : 'badge-gray-custom';
-                        currentLoadTypeBadge.className = 'd-inline-block px-3 py-1 rounded-pill small fw-bold mb-2 badge-custom ' + ltClass;
+                        currentLoadTypeBadge.className = 'd-inline-block px-2 py-0.5 rounded-pill small fw-bold mb-1 badge-custom ' + ltClass;
+                        currentLoadTypeBadge.style.fontSize = '0.55rem';
                     } else {
                         currentLoadTypeBadge.style.display = 'none';
                     }
@@ -983,7 +1142,7 @@
                                looseBtn.classList.contains('active') ||
                                vasBtn.classList.contains('active') ||
                                othersBtn.classList.contains('active');
-            const hasCategory = categoryBtns[0]?.classList.contains('active') || true; // always has a category
+            const hasCategory = categoryBtns[0]?.classList.contains('active') || true;
             const hasActivityName = activityInput.value.trim().length > 0;
             addActivityBtn.disabled = !(hasLoadType && hasActivityName);
             activityInput.disabled = !hasLoadType;
@@ -1218,8 +1377,8 @@
                 ready: 'bg-secondary'
             };
             statusDot.className = 'd-inline-block rounded-circle ' + (colors[state] || colors.ready);
-            statusDot.style.width = '8px';
-            statusDot.style.height = '8px';
+            statusDot.style.width = '6px';
+            statusDot.style.height = '6px';
             statusText.textContent = state.charAt(0).toUpperCase() + state.slice(1);
         }
 
@@ -1299,8 +1458,8 @@
                 tableContainer.innerHTML =
                     `<div class="empty-state">
                 <div class="empty-state-icon animate-float">📋</div>
-                <p class="fw-medium mb-1">No data recorded yet</p>
-                <p class="small mb-0">Select a category, activity type and add an activity to begin</p>
+                <p class="fw-medium mb-0" style="font-size:0.8rem;">No data recorded yet</p>
+                <p class="small mb-0" style="font-size:0.65rem;">Select a category, activity type and add an activity to begin</p>
               </div>`;
                 recordCount.textContent = '0 records';
                 return;
@@ -1322,22 +1481,22 @@
                 
                 html += '<tr>';
                 html +=
-                    `<td class="text-start fw-semibold" style="color:var(--primary);cursor:pointer" onclick="openEditModal('${activity.id}')">${activity.name}${tc>=6?'<span class="badge-custom badge-success-custom ms-1" style="font-size:9px">✓</span>':tc>0?`<span style="font-size:9px;color:var(--text-muted);margin-left:4px">(${tc}/6)</span>`:''}<div style="font-size:9px;color:var(--text-muted)">✏️ edit</div></td>`;
-                html += `<td style="cursor:pointer" onclick="openEditModal('${activity.id}')"><span class="badge-custom ${catClass}">${catEmoji} ${cat.toUpperCase()}</span></td>`;
-                html += `<td style="cursor:pointer" onclick="openEditModal('${activity.id}')"><span class="badge-custom ${ltClass}">${lt.toUpperCase()}</span></td>`;
+                    `<td class="text-start fw-semibold" style="color:var(--primary);cursor:pointer;font-size:9px;" onclick="openEditModal('${activity.id}')">${activity.name}${tc>=6?'<span class="badge-custom badge-success-custom ms-1" style="font-size:7px;">✓</span>':tc>0?`<span style="font-size:7px;color:var(--text-muted);margin-left:2px;">(${tc}/6)</span>`:''}<div style="font-size:7px;color:var(--text-muted);">✏️ edit</div></td>`;
+                html += `<td style="cursor:pointer;font-size:8px;" onclick="openEditModal('${activity.id}')"><span class="badge-custom ${catClass}" style="font-size:7px;">${catEmoji} ${cat.toUpperCase().substring(0,4)}</span></td>`;
+                html += `<td style="cursor:pointer;font-size:8px;" onclick="openEditModal('${activity.id}')"><span class="badge-custom ${ltClass}" style="font-size:7px;">${lt.toUpperCase().substring(0,4)}</span></td>`;
                 for (let i = 0; i < 6; i++) {
                     const e = activity.tms[i];
                     if (e) {
                         const upm = e.time > 0 ? (e.units / e.time).toFixed(1) : '0';
                         html +=
-                            `<td><div style="font-weight:700;color:var(--primary)">${e.time}m</div><div style="color:var(--text-secondary)">${e.units}u</div><div style="color:var(--primary);font-style:italic;font-size:9px;max-width:80px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin:0 auto" title="${e.remarks||''}">${e.remarks||'N/A'}</div><div style="color:var(--success);font-weight:700;font-size:10px">${upm}u/m</div></td>`;
-                    } else html += '<td style="color:var(--text-muted)">—</td>';
+                            `<td style="padding:4px 2px;"><div style="font-weight:700;color:var(--primary);font-size:8px;">${e.time}m</div><div style="color:var(--text-secondary);font-size:7px;">${e.units}u</div><div style="color:var(--primary);font-style:italic;font-size:7px;max-width:50px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin:0 auto" title="${e.remarks||''}">${e.remarks||'N/A'}</div><div style="color:var(--success);font-weight:700;font-size:7px;">${upm}u/m</div></td>`;
+                    } else html += '<td style="color:var(--text-muted);font-size:8px;">—</td>';
                 }
                 if (tc > 0) html +=
-                    `<td style="font-weight:700;color:var(--primary)">${prod.avg}</td><td style="font-weight:700;color:var(--primary)">${prod.hourly}</td>`;
-                else html += '<td style="color:var(--text-muted)">—</td><td style="color:var(--text-muted)">—</td>';
+                    `<td style="font-weight:700;color:var(--primary);font-size:9px;">${prod.avg}</td><td style="font-weight:700;color:var(--primary);font-size:9px;">${prod.hourly}</td>`;
+                else html += '<td style="color:var(--text-muted);font-size:8px;">—</td><td style="color:var(--text-muted);font-size:8px;">—</td>';
                 html +=
-                    `<td><button onclick="event.stopPropagation();deleteActivity('${activity.id}')" style="color:var(--danger);font-weight:700;font-size:16px;background:none;border:none;cursor:pointer;padding:4px">✕</button></td></tr>`;
+                    `<td><button onclick="event.stopPropagation();deleteActivity('${activity.id}')" style="color:var(--danger);font-weight:700;font-size:14px;background:none;border:none;cursor:pointer;padding:2px 4px;">✕</button></td></tr>`;
             });
             html += '</tbody></table>';
             tableContainer.innerHTML = html;
@@ -1358,11 +1517,11 @@
             if (ta === 0) { summarySection.classList.add('hidden'); return; }
             summarySection.classList.remove('hidden');
             totalActivities.textContent = ta;
-            totalTime.innerHTML = tt.toFixed(1) + '<span class="small">m</span>';
+            totalTime.innerHTML = tt.toFixed(1) + '<span class="small" style="font-size:0.5rem;">m</span>';
             totalUnits.textContent = tu;
             const avg = rates.length > 0 ? rates.reduce((a, b) => a + b, 0) / rates.length : 0;
             avgProductivity.textContent = avg.toFixed(1);
-            hourlyRate.innerHTML = (avg * 60).toFixed(1) + ' <span class="fs-6">u/hr</span>';
+            hourlyRate.innerHTML = (avg * 60).toFixed(1) + ' <span class="fs-6" style="font-size:0.6rem;">u/hr</span>';
         }
 
         // ============================================================
@@ -1490,15 +1649,15 @@
         function loadData() {
             const saved = JSON.parse(localStorage.getItem('tms_saved_v3') || '[]');
             if (saved.length === 0) {
-                savedDataList.innerHTML = '<p class="text-center text-muted py-4">No saved data</p>';
+                savedDataList.innerHTML = '<p class="text-center text-muted py-3" style="font-size:0.75rem;">No saved data</p>';
             } else {
                 savedDataList.innerHTML = saved.map((item, i) => `
-                <div class="bg-light rounded-3 p-3 mb-2 cursor-pointer border border-light position-relative" 
+                <div class="bg-light rounded-3 p-3 mb-2 cursor-pointer border border-light position-relative saved-item" 
                      style="cursor:pointer;" onclick="loadSavedData(${i})">
-                  <button class="btn btn-sm btn-danger position-absolute top-0 end-0 m-2" 
-                          style="padding:2px 8px;font-size:12px;" onclick="event.stopPropagation();deleteSavedData(${i})">✕</button>
-                  <div class="fw-bold" style="color:var(--text-primary);">${item.name}</div>
-                  <div class="small text-secondary">${item.activities?.length||0} activities • ${new Date(item.savedDate).toLocaleString()}</div>
+                  <button class="btn btn-sm btn-danger position-absolute top-0 end-0 m-2 delete-btn" 
+                          style="padding:2px 8px;font-size:11px;" onclick="event.stopPropagation();deleteSavedData(${i})">✕</button>
+                  <div class="fw-bold" style="color:var(--text-primary);font-size:0.8rem;">${item.name}</div>
+                  <div class="small text-secondary" style="font-size:0.6rem;">${item.activities?.length||0} activities • ${new Date(item.savedDate).toLocaleString()}</div>
                 </div>
               `).join('');
             }
@@ -1617,7 +1776,7 @@
         // BOOT
         // ============================================================
         init();
-        console.log('⚡ Time Motion Study · Bootstrap Edition v4.0');
+        console.log('⚡ Time Motion Study · Mobile Optimized v5.0');
         console.log('📂 Categories: Inbound, Outbound, Inventory, Replenishment');
         console.log('📦 Activity Types: Palletized, Loose, VAS, Others');
         console.log('💬 Remarks field - Ctrl+Enter to save');
