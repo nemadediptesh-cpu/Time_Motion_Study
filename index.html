@@ -233,26 +233,7 @@
             font-weight: 700;
             text-transform: uppercase;
         }
-        .chip-option .option-status {
-            font-size: 10px;
-            padding: 2px 8px;
-            border-radius: 10px;
-            font-weight: 600;
-        }
-        .chip-option .option-status.recorded {
-            background: var(--success-light);
-            color: var(--success);
-        }
-        .chip-option .option-status.missing {
-            background: var(--danger-light);
-            color: var(--danger);
-        }
-        .chip-option .option-status.available {
-            background: var(--primary-light);
-            color: var(--primary);
-        }
 
-        /* Color variants for dropdown options */
         .chip-option.opt-inbound .option-badge { background: var(--primary-light); color: var(--primary); }
         .chip-option.opt-outbound .option-badge { background: var(--success-light); color: var(--success); }
         .chip-option.opt-inventory .option-badge { background: #EDE9FE; color: #8B5CF6; }
@@ -272,152 +253,6 @@
         .chip-selector.type-loose { border-color: var(--warning); background: var(--warning-light); }
         .chip-selector.type-vas { border-color: #8B5CF6; background: #EDE9FE; }
         .chip-selector.type-others { border-color: #6B7280; background: #F3F4F6; }
-
-        /* ============================================================
-           TMS SELECTOR - NEW!
-           ============================================================ */
-        .tms-chip-selector {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-            padding: 10px 14px;
-            min-height: 44px;
-            border: 2px solid var(--border);
-            border-radius: var(--radius-md);
-            background: var(--card);
-            color: var(--text-primary);
-            font-family: var(--font-body);
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            touch-action: manipulation;
-            -webkit-touch-callout: none;
-            user-select: none;
-        }
-        .tms-chip-selector:hover {
-            border-color: var(--primary);
-        }
-        .tms-chip-selector:active {
-            transform: scale(0.98);
-        }
-        .tms-chip-selector .tms-chip-text {
-            flex: 1;
-            text-align: left;
-            font-weight: 700;
-            font-family: var(--font-mono);
-            font-size: 16px;
-        }
-        .tms-chip-selector .tms-chip-arrow {
-            font-size: 14px;
-            color: var(--text-muted);
-            transition: transform 0.3s ease;
-        }
-        .tms-chip-selector .tms-chip-arrow.open {
-            transform: rotate(180deg);
-        }
-        .tms-chip-selector .tms-chip-badge {
-            display: inline-block;
-            padding: 2px 10px;
-            border-radius: 12px;
-            font-size: 10px;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-right: 8px;
-        }
-        .tms-chip-selector .tms-chip-badge.available { background: var(--primary-light); color: var(--primary); }
-        .tms-chip-selector .tms-chip-badge.recorded { background: var(--success-light); color: var(--success); }
-        .tms-chip-selector .tms-chip-badge.missing { background: var(--danger-light); color: var(--danger); }
-
-        .tms-chip-dropdown {
-            position: absolute;
-            top: calc(100% + 4px);
-            left: 0;
-            right: 0;
-            background: var(--card);
-            border: 2px solid var(--border);
-            border-radius: var(--radius-md);
-            box-shadow: var(--shadow-lg);
-            z-index: 50;
-            max-height: 0;
-            overflow: hidden;
-            opacity: 0;
-            transition: max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-                        opacity 0.25s ease,
-                        margin 0.3s ease;
-            margin-top: -8px;
-        }
-        .tms-chip-dropdown.open {
-            max-height: 300px;
-            opacity: 1;
-            margin-top: 0;
-            overflow-y: auto;
-        }
-
-        .tms-chip-option {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 14px;
-            border: none;
-            background: transparent;
-            width: 100%;
-            text-align: left;
-            font-family: var(--font-body);
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--text-primary);
-            cursor: pointer;
-            transition: var(--transition);
-            touch-action: manipulation;
-            -webkit-touch-callout: none;
-            user-select: none;
-            border-bottom: 1px solid var(--border-light);
-        }
-        .tms-chip-option:last-child {
-            border-bottom: none;
-        }
-        .tms-chip-option:hover {
-            background: var(--primary-light);
-        }
-        .tms-chip-option:active {
-            background: var(--primary-light);
-            transform: scale(0.98);
-        }
-        .tms-chip-option .tms-option-label {
-            font-family: var(--font-mono);
-            font-weight: 700;
-            font-size: 14px;
-            flex: 1;
-        }
-        .tms-chip-option .tms-option-status {
-            font-size: 10px;
-            padding: 2px 10px;
-            border-radius: 10px;
-            font-weight: 600;
-        }
-        .tms-chip-option .tms-option-status.recorded {
-            background: var(--success-light);
-            color: var(--success);
-        }
-        .tms-chip-option .tms-option-status.missing {
-            background: var(--danger-light);
-            color: var(--danger);
-        }
-        .tms-chip-option .tms-option-status.available {
-            background: var(--primary-light);
-            color: var(--primary);
-        }
-        .tms-chip-option .tms-option-check {
-            color: var(--primary);
-            font-size: 18px;
-            opacity: 0;
-            transition: opacity 0.2s ease;
-        }
-        .tms-chip-option .tms-option-check.selected {
-            opacity: 1;
-        }
 
         /* ============================================================
            BUTTONS
@@ -666,7 +501,7 @@
         }
 
         /* ============================================================
-           DATA TABLE
+           DATA TABLE - Clickable rows
            ============================================================ */
         .data-table {
             width: 100%;
@@ -692,10 +527,36 @@
             border-bottom: 1px solid var(--border-light);
             font-size: 10px;
         }
+        
+        /* Clickable row styling */
+        .data-table tr {
+            cursor: pointer;
+            transition: var(--transition);
+        }
         .data-table tr:hover td {
             background: var(--primary-light);
         }
+        .data-table tr.active-row td {
+            background: var(--primary-light);
+            border-left: 3px solid var(--primary);
+            border-right: 3px solid var(--primary);
+        }
+        .data-table tr.active-row td:first-child {
+            border-left: 3px solid var(--primary);
+        }
+        .data-table tr.active-row td:last-child {
+            border-right: 3px solid var(--primary);
+        }
         .data-table tr:last-child td { border-bottom: none; }
+        
+        /* Row click hint */
+        .row-click-hint {
+            font-size: 7px;
+            color: var(--text-muted);
+            display: block;
+            margin-top: 2px;
+            font-weight: 400;
+        }
 
         .table-wrapper {
             overflow-x: auto;
@@ -705,20 +566,45 @@
             border-radius: var(--radius-md);
         }
 
-        /* TMS number highlight in table */
-        .tms-recorded {
-            background: var(--success-light);
-            border-radius: 4px;
-            padding: 2px 4px;
-            font-weight: 700;
-            color: var(--success);
+        /* TMS Progress Dots */
+        .tms-progress {
+            display: flex;
+            gap: 4px;
+            margin: 4px 0;
+            justify-content: center;
         }
-        .tms-missing {
-            background: var(--danger-light);
-            border-radius: 4px;
-            padding: 2px 4px;
+        .tms-progress .tms-dot {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
             font-weight: 700;
-            color: var(--danger);
+            border: 2px solid var(--border);
+            transition: var(--transition);
+        }
+        .tms-progress .tms-dot.recorded {
+            background: var(--success);
+            color: white;
+            border-color: var(--success);
+        }
+        .tms-progress .tms-dot.missing {
+            background: var(--danger);
+            color: white;
+            border-color: var(--danger);
+        }
+        .tms-progress .tms-dot.empty {
+            background: var(--bg-secondary);
+            color: var(--text-muted);
+            border-color: var(--border-light);
+        }
+        .tms-progress .tms-dot.current {
+            border-color: var(--primary);
+            border-width: 3px;
+            background: var(--primary-light);
+            color: var(--primary);
         }
 
         /* ============================================================
@@ -857,8 +743,6 @@
             .section-label { font-size: 9px; }
             .chip-selector { font-size: 12px; padding: 8px 12px; min-height: 40px; }
             .chip-option { font-size: 12px; padding: 10px 12px; }
-            .tms-chip-selector { font-size: 12px; padding: 8px 12px; min-height: 40px; }
-            .tms-chip-option { font-size: 12px; padding: 10px 12px; }
         }
 
         @media (max-width: 768px) {
@@ -919,42 +803,14 @@
             font-size: 11px !important;
         }
 
-        /* TMS Progress Bar */
-        .tms-progress {
-            display: flex;
-            gap: 4px;
-            margin: 4px 0;
+        /* Active row highlight animation */
+        @keyframes rowHighlight {
+            0% { background: var(--primary-light); }
+            50% { background: #D6D6FF; }
+            100% { background: var(--primary-light); }
         }
-        .tms-progress .tms-dot {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 8px;
-            font-weight: 700;
-            border: 2px solid var(--border);
-        }
-        .tms-progress .tms-dot.recorded {
-            background: var(--success);
-            color: white;
-            border-color: var(--success);
-        }
-        .tms-progress .tms-dot.missing {
-            background: var(--danger);
-            color: white;
-            border-color: var(--danger);
-        }
-        .tms-progress .tms-dot.empty {
-            background: var(--bg-secondary);
-            color: var(--text-muted);
-            border-color: var(--border-light);
-        }
-        .tms-progress .tms-dot.current {
-            border-color: var(--primary);
-            border-width: 3px;
-            animation: statusPulse 2s infinite;
+        .row-highlight {
+            animation: rowHighlight 0.8s ease;
         }
     </style>
 </head>
@@ -1086,14 +942,7 @@
                 </div>
 
                 <!-- TMS Progress Dots -->
-                <div class="tms-progress justify-content-center mb-2" id="tmsProgress">
-                    <span class="tms-dot recorded">1</span>
-                    <span class="tms-dot empty">2</span>
-                    <span class="tms-dot empty">3</span>
-                    <span class="tms-dot empty">4</span>
-                    <span class="tms-dot empty">5</span>
-                    <span class="tms-dot empty">6</span>
-                </div>
+                <div class="tms-progress" id="tmsProgress"></div>
 
                 <div class="timer-display fw-bold mb-2 timer-glow" id="timerDisplay" style="color:#fff;">
                     00:00.0
@@ -1135,7 +984,7 @@
                 </div>
             </div>
 
-            <!-- Units & Remarks - NEW with TMS Selector -->
+            <!-- Units & Remarks -->
             <div id="unitsSection" class="glass-card mb-2 hidden border border-success border-2">
                 <div class="d-flex justify-content-between align-items-center mb-2">
                     <span class="fw-bold font-heading" style="color:var(--text-primary);font-size:0.85rem;">📊 Recording Details</span>
@@ -1143,22 +992,6 @@
                         ⏱ <span id="recordedTimeDisplay" class="fw-bold font-mono" style="color:var(--success);">00:00.0</span>
                     </span>
                 </div>
-                
-                <!-- NEW: TMS Selector -->
-                <div class="mb-2">
-                    <span class="section-label">📌 Record TMS</span>
-                    <div class="dropdown-chip" id="tmsDropdown">
-                        <button class="tms-chip-selector" onclick="toggleTMSDropdown()" id="tmsSelector">
-                            <span class="tms-chip-badge available" id="tmsBadge">Available</span>
-                            <span class="tms-chip-text" id="tmsText">TMS 1</span>
-                            <span class="tms-chip-arrow" id="tmsArrow"><i class="bi bi-chevron-down"></i></span>
-                        </button>
-                        <div class="tms-chip-dropdown" id="tmsDropdownMenu">
-                            <!-- Dynamically populated -->
-                        </div>
-                    </div>
-                </div>
-                
                 <div class="mb-1.5">
                     <span class="section-label">Units Handled</span>
                     <input type="number" id="unitsInput" placeholder="Enter units handled" min="0" step="1" autofocus
@@ -1175,7 +1008,7 @@
                 </button>
             </div>
 
-            <!-- Data Table -->
+            <!-- Data Table - Clickable Rows -->
             <div class="glass-card mb-2 animate-slide-up">
                 <div class="d-flex justify-content-between align-items-center mb-2">
                     <h5 class="fw-bold font-heading mb-0" style="color:var(--text-primary);font-size:0.9rem;">📊 Recorded Data</h5>
@@ -1187,6 +1020,11 @@
                         <p class="fw-medium mb-0" style="font-size:0.8rem;">No data recorded yet</p>
                         <p class="small mb-0" style="font-size:0.65rem;">Select a category, activity type and add an activity to begin</p>
                     </div>
+                </div>
+                <div class="text-center mt-2">
+                    <span style="font-size:0.55rem;color:var(--text-muted);">
+                        <i class="bi bi-hand-pointer"></i> Click any activity row to select it
+                    </span>
                 </div>
             </div>
 
@@ -1399,7 +1237,6 @@
         let isPaused = false;
         let isStopped = true;
         let pendingSaveTime = 0;
-        let selectedTMS = 0; // 0-indexed
 
         // DOM refs
         const $ = id => document.getElementById(id);
@@ -1437,16 +1274,7 @@
         const shareUrlBox = $('shareUrlBox');
         const toast = $('toast');
         const tmsProgress = $('tmsProgress');
-        const tmsSelector = $('tmsSelector');
-        const tmsText = $('tmsText');
-        const tmsBadge = $('tmsBadge');
-        const tmsArrow = $('tmsArrow');
-        const tmsDropdownMenu = $('tmsDropdownMenu');
         let toastTimeout;
-
-        // Category buttons
-        const categoryBtns = document.querySelectorAll('.category-btn[data-category]');
-        const editCategoryBtns = document.querySelectorAll('.category-btn[data-edit-category]');
 
         // ============================================================
         // DROPDOWN CHIP HELPERS
@@ -1479,20 +1307,13 @@
             arrow.classList.toggle('open');
         }
 
-        function toggleTMSDropdown() {
-            const menu = $('tmsDropdownMenu');
-            const arrow = $('tmsArrow');
-            menu.classList.toggle('open');
-            arrow.classList.toggle('open');
-        }
-
         // Close dropdowns when clicking outside
         document.addEventListener('click', function(e) {
-            ['categoryDropdown', 'activityDropdown', 'editCategoryDropdown', 'editActivityDropdown', 'tmsDropdown'].forEach(id => {
+            ['categoryDropdown', 'activityDropdown', 'editCategoryDropdown', 'editActivityDropdown'].forEach(id => {
                 const container = document.getElementById(id);
                 if (container && !container.contains(e.target)) {
-                    const menu = container.querySelector('.chip-dropdown, .tms-chip-dropdown');
-                    const arrow = container.querySelector('.chip-arrow, .tms-chip-arrow');
+                    const menu = container.querySelector('.chip-dropdown');
+                    const arrow = container.querySelector('.chip-arrow');
                     if (menu) menu.classList.remove('open');
                     if (arrow) arrow.classList.remove('open');
                 }
@@ -1653,126 +1474,8 @@
         }
 
         // ============================================================
-        // TMS MANAGEMENT - NEW!
+        // TMS PROGRESS DOTS
         // ============================================================
-        function getAvailableTMS(activity) {
-            if (!activity) return [];
-            const recorded = activity.tms.map(t => t.tmsIndex !== undefined ? t.tmsIndex : -1);
-            const available = [];
-            for (let i = 0; i < 6; i++) {
-                if (!recorded.includes(i)) {
-                    available.push(i);
-                }
-            }
-            return available;
-        }
-
-        function updateTMSSelector(activityId) {
-            const activity = activities.find(a => a.id === activityId);
-            if (!activity) {
-                tmsDropdownMenu.innerHTML = '<div class="p-2 text-muted small">No activity selected</div>';
-                return;
-            }
-
-            const recorded = activity.tms.map(t => t.tmsIndex !== undefined ? t.tmsIndex : -1);
-            const available = [];
-            const missing = [];
-            
-            for (let i = 0; i < 6; i++) {
-                if (recorded.includes(i)) {
-                    // Already recorded
-                } else {
-                    available.push(i);
-                }
-            }
-
-            // If no available TMS, show message
-            if (available.length === 0) {
-                tmsDropdownMenu.innerHTML = `
-                    <div class="p-3 text-center text-muted small">
-                        <div>✅ All 6 TMS recorded!</div>
-                        <div style="font-size:0.65rem;margin-top:4px;">This activity is complete</div>
-                    </div>
-                `;
-                // Update selector
-                tmsText.textContent = 'Complete ✅';
-                tmsBadge.textContent = 'Complete';
-                tmsBadge.className = 'tms-chip-badge recorded';
-                return;
-            }
-
-            // Build dropdown options
-            let html = '';
-            available.forEach(idx => {
-                const num = idx + 1;
-                const isSelected = selectedTMS === idx;
-                html += `
-                    <button class="tms-chip-option" onclick="selectTMS(${idx})">
-                        <span class="tms-option-label">TMS ${num}</span>
-                        <span class="tms-option-status available">Available</span>
-                        <span class="tms-option-check ${isSelected ? 'selected' : ''}"><i class="bi bi-check-circle-fill"></i></span>
-                    </button>
-                `;
-            });
-
-            // Also show recorded ones (grayed out)
-            recorded.forEach(idx => {
-                if (idx >= 0 && idx < 6) {
-                    const num = idx + 1;
-                    html += `
-                        <button class="tms-chip-option" style="opacity:0.5;cursor:not-allowed;" onclick="showToast('TMS ${num} already recorded', 'info')">
-                            <span class="tms-option-label">TMS ${num}</span>
-                            <span class="tms-option-status recorded">Recorded ✓</span>
-                            <span class="tms-option-check"><i class="bi bi-check-circle-fill" style="color:var(--success);"></i></span>
-                        </button>
-                    `;
-                }
-            });
-
-            tmsDropdownMenu.innerHTML = html;
-
-            // Update selector based on selectedTMS
-            if (available.includes(selectedTMS)) {
-                const num = selectedTMS + 1;
-                tmsText.textContent = `TMS ${num}`;
-                tmsBadge.textContent = 'Available';
-                tmsBadge.className = 'tms-chip-badge available';
-            } else if (available.length > 0) {
-                // Auto-select first available
-                selectedTMS = available[0];
-                const num = selectedTMS + 1;
-                tmsText.textContent = `TMS ${num}`;
-                tmsBadge.textContent = 'Available';
-                tmsBadge.className = 'tms-chip-badge available';
-                // Update checkmark
-                document.querySelectorAll('.tms-chip-option .tms-option-check').forEach((check, i) => {
-                    check.classList.toggle('selected', i === 0);
-                });
-            }
-        }
-
-        function selectTMS(index) {
-            selectedTMS = index;
-            const num = index + 1;
-            tmsText.textContent = `TMS ${num}`;
-            tmsBadge.textContent = 'Available';
-            tmsBadge.className = 'tms-chip-badge available';
-            
-            // Update checkmarks
-            document.querySelectorAll('.tms-chip-option .tms-option-check').forEach((check, i) => {
-                const opt = check.closest('.tms-chip-option');
-                const label = opt.querySelector('.tms-option-label');
-                if (label && label.textContent === `TMS ${num}`) {
-                    check.classList.add('selected');
-                } else {
-                    check.classList.remove('selected');
-                }
-            });
-            
-            tmsDropdownMenu.classList.remove('open');
-            tmsArrow.classList.remove('open');
-        }
-
         function updateTMSProgress(activityId) {
             const activity = activities.find(a => a.id === activityId);
             if (!activity) {
@@ -1780,14 +1483,15 @@
                 return;
             }
 
-            const recorded = activity.tms.map(t => t.tmsIndex !== undefined ? t.tmsIndex : -1);
+            // Count TMS records (1-6)
+            const tmsCount = activity.tms.length;
             let html = '';
             for (let i = 0; i < 6; i++) {
                 const num = i + 1;
                 let cls = 'tms-dot';
-                if (recorded.includes(i)) {
+                if (i < tmsCount) {
                     cls += ' recorded';
-                } else if (i === selectedTMS) {
+                } else if (i === tmsCount && tmsCount < 6) {
                     cls += ' current';
                 } else {
                     cls += ' empty';
@@ -1824,31 +1528,80 @@
                         currentLoadTypeBadge.style.display = 'none';
                     }
 
-                    // Update TMS selector and progress
-                    updateTMSSelector(activity.id);
+                    // Update TMS progress dots
                     updateTMSProgress(activity.id);
-                    currentTMS.textContent = activity.tms.length >= 6 ? 'TMS 6 ✓' : 'TMS ' + (activity.tms.length + 1);
+                    
+                    // Update TMS counter
+                    const tmsCount = activity.tms.length;
+                    currentTMS.textContent = tmsCount >= 6 ? 'TMS 6 ✓' : 'TMS ' + (tmsCount + 1);
+                    
+                    // Highlight the activity in the table
+                    highlightActiveRow(activity.id);
                 }
             } else {
                 currentLoadTypeBadge.style.display = 'none';
                 currentCategoryBadge.style.display = 'none';
                 tmsProgress.innerHTML = '';
-                tmsText.textContent = 'Select activity';
-                tmsBadge.textContent = '—';
-                tmsBadge.className = 'tms-chip-badge';
+                currentTMS.textContent = 'TMS 1';
+                // Remove row highlights
+                document.querySelectorAll('.data-table tr').forEach(row => {
+                    row.classList.remove('active-row', 'row-highlight');
+                });
             }
             updateAddButtonState();
         }
 
-        function updateAddButtonState() {
-            const hasActivityName = activityInput.value.trim().length > 0;
-            addActivityBtn.disabled = !hasActivityName;
+        // ============================================================
+        // CLICKABLE ROWS - NEW FEATURE
+        // ============================================================
+        function selectActivityFromRow(activityId) {
+            const activity = activities.find(a => a.id === activityId);
+            if (!activity) {
+                showToast('Activity not found', 'error');
+                return;
+            }
+            
+            // If already selected, just show a message
+            if (currentActivityId === activityId) {
+                showToast(`"${activity.name}" is already selected`, 'info');
+                return;
+            }
+            
+            // Reset timer if running
+            if (isRunning || isPaused) {
+                resetTimer();
+            }
+            
+            // Select the activity
+            selectActivity(activityId);
+            
+            // Highlight the row
+            highlightActiveRow(activityId);
+            
+            showToast(`Switched to "${activity.name}"`, 'success');
+        }
+
+        function highlightActiveRow(activityId) {
+            // Remove all active classes
+            document.querySelectorAll('.data-table tr').forEach(row => {
+                row.classList.remove('active-row', 'row-highlight');
+            });
+            
+            // Find and highlight the matching row
+            const rows = document.querySelectorAll('.data-table tr');
+            rows.forEach(row => {
+                const onclickAttr = row.getAttribute('onclick');
+                if (onclickAttr && onclickAttr.includes(activityId)) {
+                    row.classList.add('active-row', 'row-highlight');
+                }
+            });
         }
 
         // ============================================================
         // ACTIVITY MANAGEMENT
         // ============================================================
         function openEditModal(activityId) {
+            event.stopPropagation(); // Prevent row click from firing
             const activity = activities.find(a => a.id === activityId);
             if (!activity) return;
             editingActivityId = activityId;
@@ -1901,7 +1654,6 @@
                         if (!a.category) a.category = 'inbound';
                         a.tms.forEach(t => { 
                             if (!t.remarks) t.remarks = '';
-                            if (t.tmsIndex === undefined) t.tmsIndex = -1;
                         });
                     });
                 } catch (e) { activities = []; }
@@ -1912,6 +1664,7 @@
             updateTimerStatus('ready');
             updateAddButtonState();
             if (activities.length > 0) {
+                // Find the first activity with incomplete TMS, or just the first one
                 const incomplete = activities.find(a => a.tms.length < 6);
                 selectActivity(incomplete ? incomplete.id : activities[0].id);
             }
@@ -1944,10 +1697,21 @@
         }
 
         function deleteActivity(id) {
+            event.stopPropagation(); // Prevent row click
             if (!confirm('Delete this activity?')) return;
             const name = activities.find(a => a.id === id)?.name || 'activity';
             activities = activities.filter(a => a.id !== id);
-            if (currentActivityId === id) { currentActivityId = null; resetTimer(); }
+            if (currentActivityId === id) { 
+                currentActivityId = null; 
+                resetTimer();
+                // Select another activity if available
+                if (activities.length > 0) {
+                    selectActivity(activities[0].id);
+                } else {
+                    updateCurrentActivityDisplay();
+                    currentActivityName.textContent = 'Select an activity';
+                }
+            }
             saveToLocalStorage();
             renderTable();
             updateSummary();
@@ -1959,14 +1723,11 @@
             const activity = activities.find(a => a.id === id);
             if (activity) {
                 currentActivityName.textContent = activity.name;
-                currentTMS.textContent = activity.tms.length >= 6 ? 'TMS 6 ✓' : 'TMS ' + (activity.tms.length + 1);
-                // Reset selected TMS
-                const available = getAvailableTMS(activity);
-                if (available.length > 0) {
-                    selectedTMS = available[0];
-                }
                 updateCurrentActivityDisplay();
-                if (!isRunning && !isPaused) { elapsedSeconds = 0; updateTimerDisplay(); }
+                if (!isRunning && !isPaused) { 
+                    elapsedSeconds = 0; 
+                    updateTimerDisplay(); 
+                }
             }
         }
 
@@ -1978,14 +1739,7 @@
             const activity = activities.find(a => a.id === currentActivityId);
             if (!activity) { showToast('Activity not found', 'error'); return; }
             
-            // Check if selected TMS is already recorded
-            const recorded = activity.tms.map(t => t.tmsIndex !== undefined ? t.tmsIndex : -1);
-            if (recorded.includes(selectedTMS)) {
-                showToast('TMS ' + (selectedTMS + 1) + ' already recorded! Select another.', 'error');
-                return;
-            }
-            
-            if (activity.tms.length >= 6) { showToast('Max 6 TMS reached!', 'error'); return; }
+            if (activity.tms.length >= 6) { showToast('All 6 TMS recorded! Activity complete.', 'error'); return; }
             if (isRunning) return;
             
             if (isPaused) {
@@ -2004,7 +1758,8 @@
             updateButtons('running');
             updateTimerStatus('running');
             unitsSection.classList.add('hidden');
-            showToast('Timer started for TMS ' + (selectedTMS + 1), 'success');
+            const nextTMS = activity.tms.length + 1;
+            showToast(`Recording TMS ${nextTMS} for "${activity.name}"`, 'success');
         }
 
         function pauseTimer() {
@@ -2034,7 +1789,10 @@
             unitsInput.value = '';
             remarksInput.value = '';
             unitsInput.focus();
-            showToast('Timer stopped! Enter details.', 'success');
+            
+            const activity = activities.find(a => a.id === currentActivityId);
+            const nextTMS = activity ? activity.tms.length + 1 : '?';
+            showToast(`Timer stopped! Recording TMS ${nextTMS}`, 'success');
         }
 
         function resetTimer() {
@@ -2103,21 +1861,14 @@
         }
 
         // ============================================================
-        // SAVE RECORDING - UPDATED to use selectedTMS
+        // SAVE RECORDING
         // ============================================================
         function saveRecording() {
             if (!currentActivityId) { showToast('Select an activity!', 'error'); return; }
             const activity = activities.find(a => a.id === currentActivityId);
             if (!activity) { showToast('Activity not found', 'error'); return; }
             
-            // Check if selected TMS is already recorded
-            const recorded = activity.tms.map(t => t.tmsIndex !== undefined ? t.tmsIndex : -1);
-            if (recorded.includes(selectedTMS)) {
-                showToast('TMS ' + (selectedTMS + 1) + ' already recorded! Select another.', 'error');
-                return;
-            }
-            
-            if (activity.tms.length >= 6) { showToast('Max 6 TMS!', 'error'); return; }
+            if (activity.tms.length >= 6) { showToast('All 6 TMS recorded!', 'error'); return; }
             
             const timeToSave = pendingSaveTime > 0 ? pendingSaveTime : elapsedSeconds;
             if (timeToSave < 0.5) { showToast('Record at least 0.5s!', 'error'); return; }
@@ -2127,7 +1878,6 @@
             if (!remarks) { showToast('Please add remarks', 'error'); return; }
 
             activity.tms.push({
-                tmsIndex: selectedTMS,
                 time: Math.round(timeToSave / 60 * 10) / 10,
                 units,
                 remarks
@@ -2142,25 +1892,21 @@
             renderTable();
             updateSummary();
 
-            // Update TMS selector for next recording
-            const available = getAvailableTMS(activity);
-            if (available.length > 0) {
-                selectedTMS = available[0];
-            }
-            updateTMSSelector(activity.id);
+            // Update UI
+            const tmsCount = activity.tms.length;
+            currentTMS.textContent = tmsCount >= 6 ? 'TMS 6 ✓' : 'TMS ' + (tmsCount + 1);
             updateTMSProgress(activity.id);
-            currentTMS.textContent = activity.tms.length >= 6 ? 'TMS 6 ✓' : 'TMS ' + (activity.tms.length + 1);
             
-            if (activity.tms.length >= 6) {
+            if (tmsCount >= 6) {
                 currentActivityName.textContent = activity.name + ' ✅';
-                showToast('All 6 TMS complete!', 'success');
+                showToast(`🎉 All 6 TMS complete for "${activity.name}"!`, 'success');
             } else {
-                showToast(`TMS${selectedTMS + 1} saved!`, 'success');
+                showToast(`✅ TMS ${tmsCount} saved for "${activity.name}"`, 'success');
             }
         }
 
         // ============================================================
-        // RENDER TABLE - UPDATED to show TMS numbers
+        // RENDER TABLE - Clickable Rows
         // ============================================================
         function renderTable() {
             if (activities.length === 0) {
@@ -2186,29 +1932,30 @@
                 const catClass = getCategoryBadgeClass(cat);
                 const ltClass = getActivityBadgeClass(lt);
                 
-                // Map TMS data by index
-                const tmsMap = {};
-                activity.tms.forEach(t => {
-                    if (t.tmsIndex !== undefined) {
-                        tmsMap[t.tmsIndex] = t;
-                    }
-                });
+                // Check if this is the active row
+                const isActive = currentActivityId === activity.id;
+                const activeClass = isActive ? 'active-row' : '';
                 
-                html += '<tr>';
+                html += `<tr class="${activeClass}" onclick="selectActivityFromRow('${activity.id}')">`;
                 html +=
-                    `<td class="text-start fw-semibold" style="color:var(--primary);cursor:pointer;font-size:9px;" onclick="openEditModal('${activity.id}')">${activity.name}${tc>=6?'<span class="badge-custom badge-success-custom ms-1" style="font-size:7px;">✓</span>':tc>0?`<span style="font-size:7px;color:var(--text-muted);margin-left:2px;">(${tc}/6)</span>`:''}<div style="font-size:7px;color:var(--text-muted);">✏️ edit</div></td>`;
-                html += `<td style="cursor:pointer;font-size:8px;" onclick="openEditModal('${activity.id}')"><span class="badge-custom ${catClass}" style="font-size:7px;">${catEmoji} ${cat.toUpperCase().substring(0,4)}</span></td>`;
-                html += `<td style="cursor:pointer;font-size:8px;" onclick="openEditModal('${activity.id}')"><span class="badge-custom ${ltClass}" style="font-size:7px;">${lt.toUpperCase().substring(0,4)}</span></td>`;
+                    `<td class="text-start fw-semibold" style="color:var(--primary);font-size:9px;">
+                        ${activity.name}
+                        ${tc>=6?'<span class="badge-custom badge-success-custom ms-1" style="font-size:7px;">✓</span>':''}
+                        ${tc>0 && tc<6?`<span style="font-size:7px;color:var(--text-muted);margin-left:2px;">(${tc}/6)</span>`:''}
+                        <span class="row-click-hint"><i class="bi bi-hand-pointer"></i> click to select</span>
+                    </td>`;
+                html += `<td style="font-size:8px;"><span class="badge-custom ${catClass}" style="font-size:7px;">${catEmoji} ${cat.toUpperCase().substring(0,4)}</span></td>`;
+                html += `<td style="font-size:8px;"><span class="badge-custom ${ltClass}" style="font-size:7px;">${lt.toUpperCase().substring(0,4)}</span></td>`;
                 for (let i = 0; i < 6; i++) {
-                    const e = tmsMap[i];
+                    const e = activity.tms[i];
                     if (e) {
                         const upm = e.time > 0 ? (e.units / e.time).toFixed(1) : '0';
-                        const statusClass = e.tmsIndex !== undefined ? 'tms-recorded' : '';
                         html +=
-                            `<td style="padding:4px 2px;" class="${statusClass}"><div style="font-weight:700;color:var(--primary);font-size:8px;">${e.time}m</div><div style="color:var(--text-secondary);font-size:7px;">${e.units}u</div><div style="color:var(--primary);font-style:italic;font-size:7px;max-width:50px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin:0 auto" title="${e.remarks||''}">${e.remarks||'N/A'}</div><div style="color:var(--success);font-weight:700;font-size:7px;">${upm}u/m</div></td>`;
+                            `<td style="padding:4px 2px;background:var(--success-light);border-radius:4px;"><div style="font-weight:700;color:var(--primary);font-size:8px;">${e.time}m</div><div style="color:var(--text-secondary);font-size:7px;">${e.units}u</div><div style="color:var(--primary);font-style:italic;font-size:7px;max-width:50px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin:0 auto" title="${e.remarks||''}">${e.remarks||'N/A'}</div><div style="color:var(--success);font-weight:700;font-size:7px;">${upm}u/m</div></td>`;
                     } else {
-                        const isRecorded = activity.tms.some(t => t.tmsIndex === i);
-                        html += `<td style="padding:4px 2px;color:var(--text-muted);font-size:8px;">${isRecorded ? '✓' : '—'}</td>`;
+                        // Show empty state
+                        const isNext = i === tc && tc < 6;
+                        html += `<td style="padding:4px 2px;color:var(--text-muted);font-size:8px;${isNext ? 'border:2px dashed var(--primary);border-radius:4px;' : ''}">${isNext ? '← Next' : '—'}</td>`;
                     }
                 }
                 if (tc > 0) html +=
@@ -2220,6 +1967,11 @@
             html += '</tbody></table>';
             tableContainer.innerHTML = html;
             recordCount.textContent = totalRecords + ' records';
+            
+            // Re-highlight active row after re-render
+            if (currentActivityId) {
+                highlightActiveRow(currentActivityId);
+            }
         }
 
         // ============================================================
@@ -2266,17 +2018,14 @@
                 const p = calculateProductivity(a.tms);
                 const cat = a.category || 'inbound';
                 const lt = a.loadType || 'palletized';
-                // Sort TMS by index
-                const sortedTMS = [...a.tms].sort((x, y) => (x.tmsIndex || 0) - (y.tmsIndex || 0));
-                sortedTMS.forEach((t, i) => {
+                a.tms.forEach((t, i) => {
                     const upm = t.time > 0 ? (t.units / t.time).toFixed(2) : '0';
-                    const tmsNum = (t.tmsIndex !== undefined) ? t.tmsIndex + 1 : i + 1;
                     html += `
                   <tr>
                     <td class="activity-name">${a.name}</td>
                     <td>${cat.toUpperCase()}</td>
                     <td>${lt.toUpperCase()}</td>
-                    <td>TMS ${tmsNum}</td>
+                    <td>TMS ${i+1}</td>
                     <td>${t.time}</td>
                     <td>${t.units}</td>
                     <td>${t.remarks || ''}</td>
@@ -2399,7 +2148,6 @@
                 if (!a.category) a.category = 'inbound';
                 a.tms.forEach(t => { 
                     if (!t.remarks) t.remarks = '';
-                    if (t.tmsIndex === undefined) t.tmsIndex = -1;
                 });
             });
             if (item.title) document.getElementById('mainTitle').textContent = item.title;
@@ -2457,7 +2205,6 @@
                         if (!a.category) a.category = 'inbound';
                         a.tms.forEach(t => { 
                             if (!t.remarks) t.remarks = '';
-                            if (t.tmsIndex === undefined) t.tmsIndex = -1;
                         });
                     });
                     saveToLocalStorage();
@@ -2495,10 +2242,10 @@
         // BOOT
         // ============================================================
         init();
-        console.log('⚡ Time Motion Study · TMS Selector Feature');
+        console.log('⚡ Time Motion Study · Click-to-Select Feature');
         console.log('📂 Categories: Inbound, Outbound, Inventory, Replenishment');
         console.log('📦 Activity Types: Palletized, Loose, VAS, Others');
-        console.log('🎯 TMS Selector: Choose which TMS to record');
+        console.log('👆 Click any activity row in the table to select it');
         console.log('💬 Remarks field - Ctrl+Enter to save');
     </script>
 </body>
