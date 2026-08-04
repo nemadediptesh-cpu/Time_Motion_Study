@@ -501,7 +501,7 @@
         }
 
         /* ============================================================
-           DATA TABLE - Clickable Rows
+           DATA TABLE - Clickable Rows with visible Edit button
            ============================================================ */
         .data-table {
             width: 100%;
@@ -547,14 +547,6 @@
             border-right: 3px solid var(--primary);
         }
         .data-table tr:last-child td { border-bottom: none; }
-        
-        .row-click-hint {
-            font-size: 7px;
-            color: var(--text-muted);
-            display: block;
-            margin-top: 2px;
-            font-weight: 400;
-        }
 
         .table-wrapper {
             overflow-x: auto;
@@ -603,6 +595,61 @@
             border-width: 3px;
             background: var(--primary-light);
             color: var(--primary);
+        }
+
+        /* ============================================================
+           ROW ACTIONS - NEW: Visible Edit Button
+           ============================================================ */
+        .edit-btn {
+            font-size: 8px;
+            color: var(--primary);
+            cursor: pointer;
+            font-weight: 700;
+            background: var(--primary-light);
+            padding: 1px 10px;
+            border-radius: 12px;
+            border: 1px solid var(--primary);
+            transition: var(--transition);
+            display: inline-block;
+            line-height: 1.8;
+            font-family: var(--font-body);
+            touch-action: manipulation;
+        }
+        .edit-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        .edit-btn:active {
+            transform: scale(0.95);
+        }
+
+        .activity-name-link {
+            font-weight: 600;
+            cursor: pointer;
+            color: var(--primary);
+            transition: var(--transition);
+            font-size: 9px;
+        }
+        .activity-name-link:hover {
+            color: var(--primary-hover);
+            text-decoration: underline;
+        }
+
+        .row-actions {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            margin-top: 2px;
+            flex-wrap: wrap;
+        }
+        .row-click-hint {
+            font-size: 7px;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+        .row-click-hint i {
+            font-size: 7px;
         }
 
         /* ============================================================
@@ -741,6 +788,9 @@
             .section-label { font-size: 9px; }
             .chip-selector { font-size: 12px; padding: 8px 12px; min-height: 40px; }
             .chip-option { font-size: 12px; padding: 10px 12px; }
+            .edit-btn { font-size: 7px; padding: 0px 8px; }
+            .activity-name-link { font-size: 8px; }
+            .row-click-hint { font-size: 6px; }
         }
 
         @media (max-width: 768px) {
@@ -1005,7 +1055,7 @@
                 </button>
             </div>
 
-            <!-- Data Table - Clickable Rows -->
+            <!-- Data Table - Clickable Rows with visible Edit button -->
             <div class="glass-card mb-2 animate-slide-up">
                 <div class="d-flex justify-content-between align-items-center mb-2">
                     <h5 class="fw-bold font-heading mb-0" style="color:var(--text-primary);font-size:0.9rem;">📊 Recorded Data</h5>
@@ -1020,7 +1070,7 @@
                 </div>
                 <div class="text-center mt-2">
                     <span style="font-size:0.55rem;color:var(--text-muted);">
-                        <i class="bi bi-hand-pointer"></i> Click any activity row to select it
+                        <i class="bi bi-hand-pointer"></i> Click row to select | <i class="bi bi-pencil"></i> Click Edit to modify
                     </span>
                 </div>
             </div>
@@ -1916,7 +1966,7 @@
         }
 
         // ============================================================
-        // RENDER TABLE - Clickable Rows
+        // RENDER TABLE - Clickable Rows with visible Edit button
         // ============================================================
         function renderTable() {
             if (activities.length === 0) {
@@ -1947,11 +1997,20 @@
                 
                 html += `<tr class="${activeClass}" onclick="selectActivityFromRow('${activity.id}')">`;
                 html +=
-                    `<td class="text-start fw-semibold" style="color:var(--primary);font-size:9px;">
-                        ${activity.name}
-                        ${tc>=6?'<span class="badge-custom badge-success-custom ms-1" style="font-size:7px;">✓</span>':''}
-                        ${tc>0 && tc<6?`<span style="font-size:7px;color:var(--text-muted);margin-left:2px;">(${tc}/6)</span>`:''}
-                        <span class="row-click-hint"><i class="bi bi-hand-pointer"></i> click to select</span>
+                    `<td class="text-start" style="padding:4px 4px;">
+                        <div class="activity-name-link" onclick="event.stopPropagation();openEditModal('${activity.id}')">
+                            ${activity.name}
+                            ${tc>=6?'<span class="badge-custom badge-success-custom ms-1" style="font-size:7px;">✓</span>':''}
+                            ${tc>0 && tc<6?`<span style="font-size:7px;color:var(--text-muted);margin-left:2px;">(${tc}/6)</span>`:''}
+                        </div>
+                        <div class="row-actions">
+                            <button class="edit-btn" onclick="event.stopPropagation();openEditModal('${activity.id}')">
+                                ✏️ Edit
+                            </button>
+                            <span class="row-click-hint">
+                                <i class="bi bi-hand-pointer"></i> click to select
+                            </span>
+                        </div>
                     </td>`;
                 html += `<td style="font-size:8px;"><span class="badge-custom ${catClass}" style="font-size:7px;">${catEmoji} ${cat.toUpperCase().substring(0,4)}</span></td>`;
                 html += `<td style="font-size:8px;"><span class="badge-custom ${ltClass}" style="font-size:7px;">${lt.toUpperCase().substring(0,4)}</span></td>`;
@@ -2253,6 +2312,7 @@
         console.log('📂 Categories: Inbound, Outbound, Inventory, Replenishment');
         console.log('📦 Activity Types: Palletized, Loose, VAS, Others');
         console.log('👆 Click any activity row in the table to select it');
+        console.log('✏️ Click "Edit" button to modify activity');
         console.log('⏱️ Timer protection: Confirmation required when timer is running');
         console.log('💬 Remarks field - Ctrl+Enter to save');
     </script>
