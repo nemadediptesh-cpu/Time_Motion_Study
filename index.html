@@ -73,7 +73,6 @@
             padding: 0.75rem 0 6rem 0;
         }
 
-        /* Mobile-safe container */
         .mobile-container {
             max-width: 480px;
             margin: 0 auto;
@@ -95,7 +94,171 @@
         }
 
         /* ============================================================
-           BUTTONS - Mobile optimized (min 44px touch target)
+           DROPDOWN CHIP - Option 7
+           ============================================================ */
+        .dropdown-chip {
+            position: relative;
+            width: 100%;
+        }
+
+        .chip-selector {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 10px 14px;
+            min-height: 44px;
+            border: 2px solid var(--border);
+            border-radius: var(--radius-md);
+            background: var(--card);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            touch-action: manipulation;
+            -webkit-touch-callout: none;
+            user-select: none;
+        }
+        .chip-selector:hover {
+            border-color: var(--primary);
+        }
+        .chip-selector:active {
+            transform: scale(0.98);
+        }
+        .chip-selector .chip-icon {
+            font-size: 18px;
+            margin-right: 8px;
+        }
+        .chip-selector .chip-text {
+            flex: 1;
+            text-align: left;
+        }
+        .chip-selector .chip-arrow {
+            font-size: 14px;
+            color: var(--text-muted);
+            transition: transform 0.3s ease;
+        }
+        .chip-selector .chip-arrow.open {
+            transform: rotate(180deg);
+        }
+        .chip-selector .chip-badge {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-left: 8px;
+        }
+
+        /* Dropdown Menu */
+        .chip-dropdown {
+            position: absolute;
+            top: calc(100% + 4px);
+            left: 0;
+            right: 0;
+            background: var(--card);
+            border: 2px solid var(--border);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            z-index: 50;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                        opacity 0.25s ease,
+                        margin 0.3s ease;
+            margin-top: -8px;
+        }
+        .chip-dropdown.open {
+            max-height: 300px;
+            opacity: 1;
+            margin-top: 0;
+            overflow-y: auto;
+        }
+
+        .chip-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 14px;
+            border: none;
+            background: transparent;
+            width: 100%;
+            text-align: left;
+            font-family: var(--font-body);
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: var(--transition);
+            touch-action: manipulation;
+            -webkit-touch-callout: none;
+            user-select: none;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .chip-option:last-child {
+            border-bottom: none;
+        }
+        .chip-option:hover {
+            background: var(--primary-light);
+        }
+        .chip-option:active {
+            background: var(--primary-light);
+            transform: scale(0.98);
+        }
+        .chip-option .option-icon {
+            font-size: 20px;
+            width: 28px;
+            text-align: center;
+        }
+        .chip-option .option-label {
+            flex: 1;
+        }
+        .chip-option .option-check {
+            color: var(--primary);
+            font-size: 18px;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+        .chip-option .option-check.selected {
+            opacity: 1;
+        }
+        .chip-option .option-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        /* Color variants for dropdown options */
+        .chip-option.opt-inbound .option-badge { background: var(--primary-light); color: var(--primary); }
+        .chip-option.opt-outbound .option-badge { background: var(--success-light); color: var(--success); }
+        .chip-option.opt-inventory .option-badge { background: #EDE9FE; color: #8B5CF6; }
+        .chip-option.opt-replenishment .option-badge { background: var(--warning-light); color: var(--warning); }
+
+        .chip-option.opt-palletized .option-badge { background: var(--primary-light); color: var(--primary); }
+        .chip-option.opt-loose .option-badge { background: var(--warning-light); color: var(--warning); }
+        .chip-option.opt-vas .option-badge { background: #EDE9FE; color: #8B5CF6; }
+        .chip-option.opt-others .option-badge { background: #F3F4F6; color: #6B7280; }
+
+        /* Active chip colors */
+        .chip-selector.cat-inbound { border-color: var(--primary); background: var(--primary-light); }
+        .chip-selector.cat-outbound { border-color: var(--success); background: var(--success-light); }
+        .chip-selector.cat-inventory { border-color: #8B5CF6; background: #EDE9FE; }
+        .chip-selector.cat-replenishment { border-color: var(--warning); background: var(--warning-light); }
+
+        .chip-selector.type-palletized { border-color: var(--primary); background: var(--primary-light); }
+        .chip-selector.type-loose { border-color: var(--warning); background: var(--warning-light); }
+        .chip-selector.type-vas { border-color: #8B5CF6; background: #EDE9FE; }
+        .chip-selector.type-others { border-color: #6B7280; background: #F3F4F6; }
+
+        /* ============================================================
+           BUTTONS - Mobile optimized
            ============================================================ */
         .btn-custom {
             display: inline-flex;
@@ -203,89 +366,7 @@
         }
 
         /* ============================================================
-           TOGGLE BUTTONS - Mobile optimized
-           ============================================================ */
-        .toggle-btn {
-            flex: 1;
-            padding: 10px 6px;
-            min-height: 44px;
-            border: 2px solid var(--border);
-            border-radius: var(--radius-md);
-            background: var(--card);
-            color: var(--text-secondary);
-            font-weight: 600;
-            font-size: 12px;
-            cursor: pointer;
-            transition: var(--transition);
-            font-family: var(--font-body);
-            text-align: center;
-            min-width: 0;
-            touch-action: manipulation;
-            -webkit-touch-callout: none;
-            user-select: none;
-            word-break: break-word;
-        }
-        .toggle-btn:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-        }
-        .toggle-btn.active {
-            background: var(--primary);
-            border-color: var(--primary);
-            color: var(--text-white);
-            box-shadow: 0 4px 12px rgba(16,24,216,0.3);
-        }
-        .toggle-btn.active.loose {
-            background: var(--warning);
-            border-color: var(--warning);
-            box-shadow: 0 4px 12px rgba(245,158,11,0.3);
-        }
-        .toggle-btn.active.vas {
-            background: #8B5CF6;
-            border-color: #8B5CF6;
-            box-shadow: 0 4px 12px rgba(139,92,246,0.3);
-        }
-        .toggle-btn.active.others {
-            background: #6B7280;
-            border-color: #6B7280;
-            box-shadow: 0 4px 12px rgba(107,114,128,0.3);
-        }
-
-        /* ============================================================
-           CATEGORY BUTTONS - Mobile optimized
-           ============================================================ */
-        .category-btn {
-            padding: 8px 10px;
-            min-height: 40px;
-            border: 2px solid var(--border);
-            border-radius: var(--radius-md);
-            background: var(--card);
-            color: var(--text-secondary);
-            font-weight: 600;
-            font-size: 11px;
-            cursor: pointer;
-            transition: var(--transition);
-            font-family: var(--font-body);
-            text-align: center;
-            flex: 1;
-            touch-action: manipulation;
-            -webkit-touch-callout: none;
-            user-select: none;
-            word-break: break-word;
-        }
-        .category-btn:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-        }
-        .category-btn.active {
-            background: var(--primary);
-            border-color: var(--primary);
-            color: var(--text-white);
-            box-shadow: 0 4px 12px rgba(16,24,216,0.3);
-        }
-
-        /* ============================================================
-           INPUTS - Mobile optimized (min 44px height)
+           INPUTS
            ============================================================ */
         .input-field {
             width: 100%;
@@ -294,7 +375,7 @@
             border: 2px solid var(--border);
             border-radius: var(--radius-md);
             font-family: var(--font-body);
-            font-size: 16px; /* Prevents iOS zoom */
+            font-size: 16px;
             font-weight: 500;
             color: var(--text-primary);
             background: var(--bg);
@@ -330,7 +411,7 @@
             border: 2px solid var(--border);
             border-radius: var(--radius-md);
             font-family: var(--font-body);
-            font-size: 16px; /* Prevents iOS zoom */
+            font-size: 16px;
             font-weight: 500;
             color: var(--text-primary);
             background: var(--bg);
@@ -347,7 +428,7 @@
         .textarea-field::placeholder { color: var(--text-muted); }
 
         /* ============================================================
-           TIMER - Mobile optimized
+           TIMER
            ============================================================ */
         .timer-display {
             font-family: var(--font-mono);
@@ -423,7 +504,7 @@
         }
 
         /* ============================================================
-           DATA TABLE - Mobile optimized with horizontal scroll
+           DATA TABLE
            ============================================================ */
         .data-table {
             width: 100%;
@@ -477,7 +558,7 @@
         }
 
         /* ============================================================
-           TOAST - Mobile optimized
+           TOAST
            ============================================================ */
         .toast-custom {
             position: fixed;
@@ -505,7 +586,7 @@
         .toast-custom.error { background: var(--danger); }
 
         /* ============================================================
-           MODAL - Mobile optimized
+           MODAL
            ============================================================ */
         .modal-custom-overlay {
             position: fixed;
@@ -592,33 +673,26 @@
         /* ============================================================
            MOBILE-SPECIFIC FIXES
            ============================================================ */
-        /* Better touch targets for small screens */
         @media (max-width: 400px) {
-            .toggle-btn { font-size: 10px; padding: 8px 4px; }
-            .category-btn { font-size: 10px; padding: 6px 6px; min-height: 36px; }
             .btn-custom { font-size: 12px; padding: 10px 12px; min-height: 40px; }
             .glass-card { padding: 0.75rem; }
             .section-label { font-size: 9px; }
+            .chip-selector { font-size: 12px; padding: 8px 12px; min-height: 40px; }
+            .chip-option { font-size: 12px; padding: 10px 12px; }
         }
 
-        /* Prevent zoom on input focus */
         @media (max-width: 768px) {
             input, textarea, select {
                 font-size: 16px !important;
             }
         }
 
-        /* Better spacing for action buttons on mobile */
         .action-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 6px;
         }
-        .action-grid .full-width {
-            grid-column: 1 / -1;
-        }
 
-        /* Header mobile optimization */
         .header-icon {
             width: 48px;
             height: 48px;
@@ -635,7 +709,6 @@
             }
         }
 
-        /* Timer card mobile padding */
         .timer-card {
             padding: 1.25rem !important;
         }
@@ -648,7 +721,6 @@
             }
         }
 
-        /* Summary cards mobile */
         .summary-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -658,7 +730,6 @@
             grid-column: 1 / -1;
         }
 
-        /* Save/Load list items */
         .saved-item {
             padding: 12px !important;
             margin-bottom: 6px !important;
@@ -690,45 +761,82 @@
 
             <!-- Load Type & Activity -->
             <div class="glass-card mb-2 animate-slide-up">
-                <!-- Category Type -->
+                
+                <!-- Category Type - Dropdown Chip -->
                 <div class="mb-2">
                     <span class="section-label">📂 Select Category Type</span>
-                    <div class="d-flex gap-1 flex-wrap">
-                        <button class="category-btn active" data-category="inbound" onclick="setCategory('inbound')">
-                            📥 Inbound
+                    <div class="dropdown-chip" id="categoryDropdown">
+                        <button class="chip-selector cat-inbound" onclick="toggleCategoryDropdown()" id="categorySelector">
+                            <span class="chip-icon" id="categoryIcon">📥</span>
+                            <span class="chip-text" id="categoryText">Inbound</span>
+                            <span class="chip-badge badge-primary-custom" id="categoryBadge">Inbound</span>
+                            <span class="chip-arrow" id="categoryArrow"><i class="bi bi-chevron-down"></i></span>
                         </button>
-                        <button class="category-btn" data-category="outbound" onclick="setCategory('outbound')">
-                            📤 Outbound
-                        </button>
-                        <button class="category-btn" data-category="inventory" onclick="setCategory('inventory')">
-                            📊 Inventory
-                        </button>
-                        <button class="category-btn" data-category="replenishment" onclick="setCategory('replenishment')">
-                            🔄 Replenishment
-                        </button>
+                        <div class="chip-dropdown" id="categoryDropdownMenu">
+                            <button class="chip-option opt-inbound" data-value="inbound" onclick="selectCategory('inbound')">
+                                <span class="option-icon">📥</span>
+                                <span class="option-label">Inbound</span>
+                                <span class="option-badge">Receiving</span>
+                                <span class="option-check selected"><i class="bi bi-check-circle-fill"></i></span>
+                            </button>
+                            <button class="chip-option opt-outbound" data-value="outbound" onclick="selectCategory('outbound')">
+                                <span class="option-icon">📤</span>
+                                <span class="option-label">Outbound</span>
+                                <span class="option-badge">Shipping</span>
+                                <span class="option-check"><i class="bi bi-check-circle-fill"></i></span>
+                            </button>
+                            <button class="chip-option opt-inventory" data-value="inventory" onclick="selectCategory('inventory')">
+                                <span class="option-icon">📊</span>
+                                <span class="option-label">Inventory</span>
+                                <span class="option-badge">Stock Count</span>
+                                <span class="option-check"><i class="bi bi-check-circle-fill"></i></span>
+                            </button>
+                            <button class="chip-option opt-replenishment" data-value="replenishment" onclick="selectCategory('replenishment')">
+                                <span class="option-icon">🔄</span>
+                                <span class="option-label">Replenishment</span>
+                                <span class="option-badge">Restocking</span>
+                                <span class="option-check"><i class="bi bi-check-circle-fill"></i></span>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Activity Type -->
+                <!-- Activity Type - Dropdown Chip -->
                 <div class="mb-2">
                     <span class="section-label">📦 Select Activity Type</span>
-                    <div class="d-flex gap-1 flex-wrap">
-                        <button id="palletizedBtn" onclick="setLoadType('palletized')"
-                                class="toggle-btn active d-flex align-items-center justify-content-center gap-1">
-                            <span>📦</span> Palletized
+                    <div class="dropdown-chip" id="activityDropdown">
+                        <button class="chip-selector type-palletized" onclick="toggleActivityDropdown()" id="activitySelector">
+                            <span class="chip-icon" id="activityIcon">📦</span>
+                            <span class="chip-text" id="activityText">Palletized</span>
+                            <span class="chip-badge badge-primary-custom" id="activityBadge">Palletized</span>
+                            <span class="chip-arrow" id="activityArrow"><i class="bi bi-chevron-down"></i></span>
                         </button>
-                        <button id="looseBtn" onclick="setLoadType('loose')"
-                                class="toggle-btn loose d-flex align-items-center justify-content-center gap-1">
-                            <span>📦</span> Loose
-                        </button>
-                        <button id="vasBtn" onclick="setLoadType('vas')"
-                                class="toggle-btn vas d-flex align-items-center justify-content-center gap-1">
-                            <span>🔧</span> VAS
-                        </button>
-                        <button id="othersBtn" onclick="setLoadType('others')"
-                                class="toggle-btn others d-flex align-items-center justify-content-center gap-1">
-                            <span>📌</span> Others
-                        </button>
+                        <div class="chip-dropdown" id="activityDropdownMenu">
+                            <button class="chip-option opt-palletized" data-value="palletized" onclick="selectActivityType('palletized')">
+                                <span class="option-icon">📦</span>
+                                <span class="option-label">Palletized</span>
+                                <span class="option-badge">Unit Load</span>
+                                <span class="option-check selected"><i class="bi bi-check-circle-fill"></i></span>
+                            </button>
+                            <button class="chip-option opt-loose" data-value="loose" onclick="selectActivityType('loose')">
+                                <span class="option-icon">📦</span>
+                                <span class="option-label">Loose</span>
+                                <span class="option-badge">Individual</span>
+                                <span class="option-check"><i class="bi bi-check-circle-fill"></i></span>
+                            </button>
+                            <button class="chip-option opt-vas" data-value="vas" onclick="selectActivityType('vas')">
+                                <span class="option-icon">🔧</span>
+                                <span class="option-label">VAS</span>
+                                <span class="option-badge">Value Added</span>
+                                <span class="option-check"><i class="bi bi-check-circle-fill"></i></span>
+                            </button>
+                            <button class="chip-option opt-others" data-value="others" onclick="selectActivityType('others')">
+                                <span class="option-icon">📌</span>
+                                <span class="option-label">Others</span>
+                                <span class="option-badge">Other</span>
+                                <span class="option-check"><i class="bi bi-check-circle-fill"></i></span>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -736,9 +844,9 @@
                 <div>
                     <span class="section-label">Activity Name</span>
                     <div class="d-flex gap-2">
-                        <input type="text" id="activityInput" placeholder="Enter activity name" maxlength="50" disabled
+                        <input type="text" id="activityInput" placeholder="Enter activity name" maxlength="50"
                                class="input-field flex-grow-1">
-                        <button id="addActivityBtn" onclick="addActivity()" disabled
+                        <button id="addActivityBtn" onclick="addActivity()"
                                 class="btn btn-primary-custom btn-custom px-3 flex-shrink-0">
                             <i class="bi bi-plus-lg"></i> Add
                         </button>
@@ -905,24 +1013,76 @@
             </div>
             <div class="mb-3">
                 <span class="section-label">Category Type</span>
-                <div class="d-flex gap-1 flex-wrap">
-                    <button class="category-btn active" data-edit-category="inbound" onclick="setEditCategory('inbound')" style="font-size:10px;min-height:36px;">📥 Inbound</button>
-                    <button class="category-btn" data-edit-category="outbound" onclick="setEditCategory('outbound')" style="font-size:10px;min-height:36px;">📤 Outbound</button>
-                    <button class="category-btn" data-edit-category="inventory" onclick="setEditCategory('inventory')" style="font-size:10px;min-height:36px;">📊 Inventory</button>
-                    <button class="category-btn" data-edit-category="replenishment" onclick="setEditCategory('replenishment')" style="font-size:10px;min-height:36px;">🔄 Replenishment</button>
+                <div class="dropdown-chip" id="editCategoryDropdown">
+                    <button class="chip-selector cat-inbound" onclick="toggleEditCategoryDropdown()" id="editCategorySelector">
+                        <span class="chip-icon" id="editCategoryIcon">📥</span>
+                        <span class="chip-text" id="editCategoryText">Inbound</span>
+                        <span class="chip-badge badge-primary-custom" id="editCategoryBadge">Inbound</span>
+                        <span class="chip-arrow" id="editCategoryArrow"><i class="bi bi-chevron-down"></i></span>
+                    </button>
+                    <div class="chip-dropdown" id="editCategoryDropdownMenu">
+                        <button class="chip-option opt-inbound" onclick="selectEditCategory('inbound')">
+                            <span class="option-icon">📥</span>
+                            <span class="option-label">Inbound</span>
+                            <span class="option-badge">Receiving</span>
+                            <span class="option-check selected"><i class="bi bi-check-circle-fill"></i></span>
+                        </button>
+                        <button class="chip-option opt-outbound" onclick="selectEditCategory('outbound')">
+                            <span class="option-icon">📤</span>
+                            <span class="option-label">Outbound</span>
+                            <span class="option-badge">Shipping</span>
+                            <span class="option-check"><i class="bi bi-check-circle-fill"></i></span>
+                        </button>
+                        <button class="chip-option opt-inventory" onclick="selectEditCategory('inventory')">
+                            <span class="option-icon">📊</span>
+                            <span class="option-label">Inventory</span>
+                            <span class="option-badge">Stock Count</span>
+                            <span class="option-check"><i class="bi bi-check-circle-fill"></i></span>
+                        </button>
+                        <button class="chip-option opt-replenishment" onclick="selectEditCategory('replenishment')">
+                            <span class="option-icon">🔄</span>
+                            <span class="option-label">Replenishment</span>
+                            <span class="option-badge">Restocking</span>
+                            <span class="option-check"><i class="bi bi-check-circle-fill"></i></span>
+                        </button>
+                    </div>
                 </div>
             </div>
             <div class="mb-3">
                 <span class="section-label">Activity Type</span>
-                <div class="d-flex gap-1 flex-wrap">
-                    <button id="editPalletizedBtn" onclick="setEditLoadType('palletized')"
-                            class="toggle-btn active" style="font-size:10px;min-height:36px;">📦 Palletized</button>
-                    <button id="editLooseBtn" onclick="setEditLoadType('loose')"
-                            class="toggle-btn loose" style="font-size:10px;min-height:36px;">📦 Loose</button>
-                    <button id="editVasBtn" onclick="setEditLoadType('vas')"
-                            class="toggle-btn vas" style="font-size:10px;min-height:36px;">🔧 VAS</button>
-                    <button id="editOthersBtn" onclick="setEditLoadType('others')"
-                            class="toggle-btn others" style="font-size:10px;min-height:36px;">📌 Others</button>
+                <div class="dropdown-chip" id="editActivityDropdown">
+                    <button class="chip-selector type-palletized" onclick="toggleEditActivityDropdown()" id="editActivitySelector">
+                        <span class="chip-icon" id="editActivityIcon">📦</span>
+                        <span class="chip-text" id="editActivityText">Palletized</span>
+                        <span class="chip-badge badge-primary-custom" id="editActivityBadge">Palletized</span>
+                        <span class="chip-arrow" id="editActivityArrow"><i class="bi bi-chevron-down"></i></span>
+                    </button>
+                    <div class="chip-dropdown" id="editActivityDropdownMenu">
+                        <button class="chip-option opt-palletized" onclick="selectEditActivityType('palletized')">
+                            <span class="option-icon">📦</span>
+                            <span class="option-label">Palletized</span>
+                            <span class="option-badge">Unit Load</span>
+                            <span class="option-check selected"><i class="bi bi-check-circle-fill"></i></span>
+                        </button>
+                        <button class="chip-option opt-loose" onclick="selectEditActivityType('loose')">
+                            <span class="option-icon">📦</span>
+                            <span class="option-label">Loose</span>
+                            <span class="option-badge">Individual</span>
+                            <span class="option-check"><i class="bi bi-check-circle-fill"></i></span>
+                        </button>
+                        <button class="chip-option opt-vas" onclick="selectEditActivityType('vas')">
+                            <span class="option-icon">🔧</span>
+                            <span class="option-label">VAS</span>
+                            <span class="option-badge">Value Added</span>
+                            <span class="option-check"><i class="bi bi-check-circle-fill"></i></span>
+                        </button>
+                        <button class="chip-option opt-others" onclick="selectEditActivityType('others')">
+                            <span class="option-icon">📌</span>
+                            <span class="option-label">Others</span>
+                            <span class="option-badge">Other</span>
+                            <span class="option-check"><i class="bi bi-check-circle-fill"></i></span>
+                        </button>
+                    </div>
                 </div>
             </div>
             <div class="d-flex gap-2">
@@ -998,10 +1158,6 @@
 
         // DOM refs
         const $ = id => document.getElementById(id);
-        const palletizedBtn = $('palletizedBtn');
-        const looseBtn = $('looseBtn');
-        const vasBtn = $('vasBtn');
-        const othersBtn = $('othersBtn');
         const activityInput = $('activityInput');
         const addActivityBtn = $('addActivityBtn');
         const currentActivityName = $('currentActivityName');
@@ -1030,10 +1186,6 @@
         const storageStatus = $('storageStatus');
         const editModal = $('editModal');
         const editActivityName = $('editActivityName');
-        const editPalletizedBtn = $('editPalletizedBtn');
-        const editLooseBtn = $('editLooseBtn');
-        const editVasBtn = $('editVasBtn');
-        const editOthersBtn = $('editOthersBtn');
         const saveLoadModal = $('saveLoadModal');
         const savedDataList = $('savedDataList');
         const shareModal = $('shareModal');
@@ -1041,29 +1193,179 @@
         const toast = $('toast');
         let toastTimeout;
 
-        // Category buttons
-        const categoryBtns = document.querySelectorAll('.category-btn[data-category]');
-        const editCategoryBtns = document.querySelectorAll('.category-btn[data-edit-category]');
+        // ============================================================
+        // DROPDOWN CHIP HELPERS
+        // ============================================================
+        function toggleCategoryDropdown() {
+            const menu = $('categoryDropdownMenu');
+            const arrow = $('categoryArrow');
+            menu.classList.toggle('open');
+            arrow.classList.toggle('open');
+        }
+
+        function toggleActivityDropdown() {
+            const menu = $('activityDropdownMenu');
+            const arrow = $('activityArrow');
+            menu.classList.toggle('open');
+            arrow.classList.toggle('open');
+        }
+
+        function toggleEditCategoryDropdown() {
+            const menu = $('editCategoryDropdownMenu');
+            const arrow = $('editCategoryArrow');
+            menu.classList.toggle('open');
+            arrow.classList.toggle('open');
+        }
+
+        function toggleEditActivityDropdown() {
+            const menu = $('editActivityDropdownMenu');
+            const arrow = $('editActivityArrow');
+            menu.classList.toggle('open');
+            arrow.classList.toggle('open');
+        }
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function(e) {
+            ['categoryDropdown', 'activityDropdown', 'editCategoryDropdown', 'editActivityDropdown'].forEach(id => {
+                const container = document.getElementById(id);
+                if (container && !container.contains(e.target)) {
+                    const menu = container.querySelector('.chip-dropdown');
+                    const arrow = container.querySelector('.chip-arrow');
+                    if (menu) menu.classList.remove('open');
+                    if (arrow) arrow.classList.remove('open');
+                }
+            });
+        });
 
         // ============================================================
         // CATEGORY MANAGEMENT
         // ============================================================
-        function setCategory(category) {
-            selectedCategory = category;
-            categoryBtns.forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.category === category);
+        const categoryConfig = {
+            'inbound': { icon: '📥', label: 'Inbound', badge: 'Inbound', badgeClass: 'badge-primary-custom', selectorClass: 'cat-inbound' },
+            'outbound': { icon: '📤', label: 'Outbound', badge: 'Outbound', badgeClass: 'badge-success-custom', selectorClass: 'cat-outbound' },
+            'inventory': { icon: '📊', label: 'Inventory', badge: 'Inventory', badgeClass: 'badge-purple-custom', selectorClass: 'cat-inventory' },
+            'replenishment': { icon: '🔄', label: 'Replenishment', badge: 'Replenish', badgeClass: 'badge-warning-custom', selectorClass: 'cat-replenishment' }
+        };
+
+        function selectCategory(value) {
+            selectedCategory = value;
+            const config = categoryConfig[value];
+            
+            // Update main selector
+            $('categoryIcon').textContent = config.icon;
+            $('categoryText').textContent = config.label;
+            $('categoryBadge').textContent = config.badge;
+            $('categoryBadge').className = 'chip-badge ' + config.badgeClass;
+            $('categorySelector').className = 'chip-selector ' + config.selectorClass;
+            
+            // Update dropdown checkmarks
+            document.querySelectorAll('#categoryDropdownMenu .chip-option').forEach(opt => {
+                const check = opt.querySelector('.option-check');
+                if (opt.dataset.value === value) {
+                    check.classList.add('selected');
+                } else {
+                    check.classList.remove('selected');
+                }
             });
+            
+            // Close dropdown
+            $('categoryDropdownMenu').classList.remove('open');
+            $('categoryArrow').classList.remove('open');
+            
             updateAddButtonState();
-            showToast(`Category set to ${category.charAt(0).toUpperCase() + category.slice(1)}`, 'success');
+            showToast(`Category set to ${config.label}`, 'success');
         }
 
-        function setEditCategory(category) {
-            editingCategory = category;
-            editCategoryBtns.forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.editCategory === category);
+        const activityConfig = {
+            'palletized': { icon: '📦', label: 'Palletized', badge: 'Palletized', badgeClass: 'badge-primary-custom', selectorClass: 'type-palletized' },
+            'loose': { icon: '📦', label: 'Loose', badge: 'Loose', badgeClass: 'badge-warning-custom', selectorClass: 'type-loose' },
+            'vas': { icon: '🔧', label: 'VAS', badge: 'VAS', badgeClass: 'badge-purple-custom', selectorClass: 'type-vas' },
+            'others': { icon: '📌', label: 'Others', badge: 'Others', badgeClass: 'badge-gray-custom', selectorClass: 'type-others' }
+        };
+
+        function selectActivityType(value) {
+            selectedLoadType = value;
+            const config = activityConfig[value];
+            
+            // Update main selector
+            $('activityIcon').textContent = config.icon;
+            $('activityText').textContent = config.label;
+            $('activityBadge').textContent = config.badge;
+            $('activityBadge').className = 'chip-badge ' + config.badgeClass;
+            $('activitySelector').className = 'chip-selector ' + config.selectorClass;
+            
+            // Update dropdown checkmarks
+            document.querySelectorAll('#activityDropdownMenu .chip-option').forEach(opt => {
+                const check = opt.querySelector('.option-check');
+                if (opt.dataset.value === value) {
+                    check.classList.add('selected');
+                } else {
+                    check.classList.remove('selected');
+                }
             });
+            
+            // Close dropdown
+            $('activityDropdownMenu').classList.remove('open');
+            $('activityArrow').classList.remove('open');
+            
+            activityInput.disabled = false;
+            activityInput.focus();
+            updateAddButtonState();
+            showToast(`Activity type set to ${config.label}`, 'success');
         }
 
+        // ============================================================
+        // EDIT MODAL DROPDOWN HANDLERS
+        // ============================================================
+        function selectEditCategory(value) {
+            editingCategory = value;
+            const config = categoryConfig[value];
+            
+            $('editCategoryIcon').textContent = config.icon;
+            $('editCategoryText').textContent = config.label;
+            $('editCategoryBadge').textContent = config.badge;
+            $('editCategoryBadge').className = 'chip-badge ' + config.badgeClass;
+            $('editCategorySelector').className = 'chip-selector ' + config.selectorClass;
+            
+            document.querySelectorAll('#editCategoryDropdownMenu .chip-option').forEach(opt => {
+                const check = opt.querySelector('.option-check');
+                if (opt.textContent.includes(config.label)) {
+                    check.classList.add('selected');
+                } else {
+                    check.classList.remove('selected');
+                }
+            });
+            
+            $('editCategoryDropdownMenu').classList.remove('open');
+            $('editCategoryArrow').classList.remove('open');
+        }
+
+        function selectEditActivityType(value) {
+            editingLoadType = value;
+            const config = activityConfig[value];
+            
+            $('editActivityIcon').textContent = config.icon;
+            $('editActivityText').textContent = config.label;
+            $('editActivityBadge').textContent = config.badge;
+            $('editActivityBadge').className = 'chip-badge ' + config.badgeClass;
+            $('editActivitySelector').className = 'chip-selector ' + config.selectorClass;
+            
+            document.querySelectorAll('#editActivityDropdownMenu .chip-option').forEach(opt => {
+                const check = opt.querySelector('.option-check');
+                if (opt.textContent.includes(config.label)) {
+                    check.classList.add('selected');
+                } else {
+                    check.classList.remove('selected');
+                }
+            });
+            
+            $('editActivityDropdownMenu').classList.remove('open');
+            $('editActivityArrow').classList.remove('open');
+        }
+
+        // ============================================================
+        // BADGE HELPERS
+        // ============================================================
         function getCategoryBadgeClass(category) {
             const map = {
                 'inbound': 'badge-primary-custom',
@@ -1084,47 +1386,38 @@
             return map[category] || '📂';
         }
 
-        // ============================================================
-        // LOAD TYPE MANAGEMENT
-        // ============================================================
-        function setLoadType(type) {
-            selectedLoadType = type;
-            [palletizedBtn, looseBtn, vasBtn, othersBtn].forEach(btn => {
-                btn.classList.remove('active');
-            });
-            if (type === 'palletized') palletizedBtn.classList.add('active');
-            else if (type === 'loose') looseBtn.classList.add('active');
-            else if (type === 'vas') vasBtn.classList.add('active');
-            else if (type === 'others') othersBtn.classList.add('active');
-            
-            activityInput.disabled = false;
-            activityInput.focus();
-            updateAddButtonState();
-            showToast(`Activity type set to ${type.toUpperCase()}`, 'success');
+        function getActivityBadgeClass(type) {
+            const map = {
+                'palletized': 'badge-primary-custom',
+                'loose': 'badge-warning-custom',
+                'vas': 'badge-purple-custom',
+                'others': 'badge-gray-custom'
+            };
+            return map[type] || 'badge-primary-custom';
         }
 
+        // ============================================================
+        // UPDATE UI
+        // ============================================================
         function updateCurrentActivityDisplay() {
             if (currentActivityId) {
                 const activity = activities.find(a => a.id === currentActivityId);
                 if (activity) {
-                    // Category badge
                     if (activity.category) {
+                        const catConfig = categoryConfig[activity.category] || categoryConfig['inbound'];
                         currentCategoryBadge.style.display = 'inline-block';
-                        currentCategoryBadge.textContent = getCategoryEmoji(activity.category) + ' ' + activity.category.toUpperCase();
+                        currentCategoryBadge.textContent = catConfig.icon + ' ' + activity.category.toUpperCase();
                         currentCategoryBadge.className = 'd-inline-block px-2 py-0.5 rounded-pill small fw-bold mb-1 ms-1 badge-custom ' + getCategoryBadgeClass(activity.category);
                         currentCategoryBadge.style.fontSize = '0.55rem';
                     } else {
                         currentCategoryBadge.style.display = 'none';
                     }
 
-                    // Load type badge
                     if (activity.loadType) {
+                        const actConfig = activityConfig[activity.loadType] || activityConfig['palletized'];
                         currentLoadTypeBadge.style.display = 'inline-block';
                         currentLoadTypeBadge.textContent = activity.loadType.toUpperCase();
-                        const ltClass = activity.loadType === 'palletized' ? 'badge-primary-custom' :
-                                       activity.loadType === 'loose' ? 'badge-warning-custom' :
-                                       activity.loadType === 'vas' ? 'badge-purple-custom' : 'badge-gray-custom';
-                        currentLoadTypeBadge.className = 'd-inline-block px-2 py-0.5 rounded-pill small fw-bold mb-1 badge-custom ' + ltClass;
+                        currentLoadTypeBadge.className = 'd-inline-block px-2 py-0.5 rounded-pill small fw-bold mb-1 badge-custom ' + getActivityBadgeClass(activity.loadType);
                         currentLoadTypeBadge.style.fontSize = '0.55rem';
                     } else {
                         currentLoadTypeBadge.style.display = 'none';
@@ -1138,18 +1431,12 @@
         }
 
         function updateAddButtonState() {
-            const hasLoadType = palletizedBtn.classList.contains('active') || 
-                               looseBtn.classList.contains('active') ||
-                               vasBtn.classList.contains('active') ||
-                               othersBtn.classList.contains('active');
-            const hasCategory = categoryBtns[0]?.classList.contains('active') || true;
             const hasActivityName = activityInput.value.trim().length > 0;
-            addActivityBtn.disabled = !(hasLoadType && hasActivityName);
-            activityInput.disabled = !hasLoadType;
+            addActivityBtn.disabled = !hasActivityName;
         }
 
         // ============================================================
-        // EDIT MODAL
+        // ACTIVITY MANAGEMENT
         // ============================================================
         function openEditModal(activityId) {
             const activity = activities.find(a => a.id === activityId);
@@ -1158,8 +1445,11 @@
             editActivityName.value = activity.name;
             editingLoadType = activity.loadType || 'palletized';
             editingCategory = activity.category || 'inbound';
-            updateEditToggleButtons();
-            updateEditCategoryButtons();
+            
+            // Set edit dropdown values
+            selectEditCategory(editingCategory);
+            selectEditActivityType(editingLoadType);
+            
             editModal.classList.remove('hidden');
             editActivityName.focus();
         }
@@ -1167,27 +1457,6 @@
         function closeEditModal() {
             editModal.classList.add('hidden');
             editingActivityId = null;
-        }
-
-        function setEditLoadType(type) {
-            editingLoadType = type;
-            updateEditToggleButtons();
-        }
-
-        function updateEditToggleButtons() {
-            [editPalletizedBtn, editLooseBtn, editVasBtn, editOthersBtn].forEach(btn => {
-                btn.classList.remove('active');
-            });
-            if (editingLoadType === 'palletized') editPalletizedBtn.classList.add('active');
-            else if (editingLoadType === 'loose') editLooseBtn.classList.add('active');
-            else if (editingLoadType === 'vas') editVasBtn.classList.add('active');
-            else if (editingLoadType === 'others') editOthersBtn.classList.add('active');
-        }
-
-        function updateEditCategoryButtons() {
-            editCategoryBtns.forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.editCategory === editingCategory);
-            });
         }
 
         function saveEdit() {
@@ -1238,13 +1507,9 @@
             storageStatus.textContent = '💾 Ready';
         }
 
-        // ============================================================
-        // ACTIVITY MANAGEMENT
-        // ============================================================
         function addActivity() {
             const name = activityInput.value.trim();
             if (!name) { showToast('Enter activity name', 'error'); return; }
-            if (!selectedLoadType) { showToast('Select activity type', 'error'); return; }
             if (activities.some(a => a.name.toLowerCase() === name.toLowerCase())) {
                 showToast('Activity already exists!', 'error');
                 return;
@@ -1403,10 +1668,8 @@
         // ============================================================
         function calculateProductivity(tmsData) {
             if (!tmsData || tmsData.length === 0) return { avg: 0, hourly: 0 };
-            let u = 0,
-                t = 0;
-            tmsData.forEach(e => { if (e.time > 0) { u += e.units;
-                    t += e.time; } });
+            let u = 0, t = 0;
+            tmsData.forEach(e => { if (e.time > 0) { u += e.units; t += e.time; } });
             if (t === 0) return { avg: 0, hourly: 0 };
             const avg = u / t;
             return { avg: Math.round(avg * 10) / 10, hourly: Math.round(avg * 60 * 10) / 10 };
@@ -1475,9 +1738,7 @@
                 const lt = activity.loadType || 'palletized';
                 const catEmoji = getCategoryEmoji(cat);
                 const catClass = getCategoryBadgeClass(cat);
-                const ltClass = lt === 'palletized' ? 'badge-primary-custom' :
-                               lt === 'loose' ? 'badge-warning-custom' :
-                               lt === 'vas' ? 'badge-purple-custom' : 'badge-gray-custom';
+                const ltClass = getActivityBadgeClass(lt);
                 
                 html += '<tr>';
                 html +=
@@ -1507,13 +1768,8 @@
         // SUMMARY
         // ============================================================
         function updateSummary() {
-            let ta = 0,
-                tt = 0,
-                tu = 0,
-                rates = [];
-            activities.forEach(a => a.tms.forEach(t => { ta++;
-                    tt += t.time;
-                    tu += t.units; if (t.time > 0) rates.push(t.units / t.time); }));
+            let ta = 0, tt = 0, tu = 0, rates = [];
+            activities.forEach(a => a.tms.forEach(t => { ta++; tt += t.time; tu += t.units; if (t.time > 0) rates.push(t.units / t.time); }));
             if (ta === 0) { summarySection.classList.add('hidden'); return; }
             summarySection.classList.remove('hidden');
             totalActivities.textContent = ta;
@@ -1570,11 +1826,8 @@
                 });
             });
 
-            let totalTimeSum = 0,
-                totalUnitsSum = 0,
-                allRates = [];
-            activities.forEach(a => a.tms.forEach(t => { totalTimeSum += t.time;
-                totalUnitsSum += t.units; if (t.time > 0) allRates.push(t.units / t.time); }));
+            let totalTimeSum = 0, totalUnitsSum = 0, allRates = [];
+            activities.forEach(a => a.tms.forEach(t => { totalTimeSum += t.time; totalUnitsSum += t.units; if (t.time > 0) allRates.push(t.units / t.time); }));
             const avgProd = allRates.length > 0 ? allRates.reduce((a, b) => a + b, 0) / allRates.length : 0;
             const hourlyProd = avgProd * 60;
 
@@ -1762,13 +2015,11 @@
         activityInput.addEventListener('input', updateAddButtonState);
         unitsInput.addEventListener('keydown', e => { if (e.key === 'Enter') saveRecording(); });
         remarksInput.addEventListener('keydown', e => { if (e.key === 'Enter' && e.ctrlKey) saveRecording(); });
-        editActivityName.addEventListener('keydown', e => { if (e.key === 'Enter') saveEdit(); if (e.key === 'Escape')
-                closeEditModal(); });
+        editActivityName.addEventListener('keydown', e => { if (e.key === 'Enter') saveEdit(); if (e.key === 'Escape') closeEditModal(); });
 
         document.addEventListener('keydown', e => {
             if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT' || e.target.tagName === 'TEXTAREA') return;
-            if (e.key === ' ' && !e.repeat) { e.preventDefault();
-                isRunning ? pauseTimer() : startTimer(); }
+            if (e.key === ' ' && !e.repeat) { e.preventDefault(); isRunning ? pauseTimer() : startTimer(); }
             if (e.key === 's' && !e.repeat && !e.ctrlKey) { if (isRunning || isPaused) stopTimer(); }
         });
 
@@ -1776,7 +2027,7 @@
         // BOOT
         // ============================================================
         init();
-        console.log('⚡ Time Motion Study · Mobile Optimized v5.0');
+        console.log('⚡ Time Motion Study · Option 7: Dropdown Chips');
         console.log('📂 Categories: Inbound, Outbound, Inventory, Replenishment');
         console.log('📦 Activity Types: Palletized, Loose, VAS, Others');
         console.log('💬 Remarks field - Ctrl+Enter to save');
